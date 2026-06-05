@@ -215,5 +215,41 @@ Output is internal (team lead, not stakeholders) → quality bar is lower → ea
 
 ---
 
+---
+
+## Synthetic CustDev Results (run June 4, 2026)
+
+All 10 hypotheses tested through `skill-synthetic-custdev.md` persona simulation.
+
+| # | Verdict | Key finding |
+|---|---|---|
+| #1 | ✅ Confirmed | Pain split confirmed (diagnosis >> fix). Acceptance criterion discovered: test on already-fixed bugs. |
+| #2 | ✅ Confirmed (amended) | Schema onboarding ~1-2 dev days per team. Not zero-build. Maintenance ownership question will come up. |
+| #3 | ⚠️ Confirmed, smaller | 3-4% sprint (not 10-15%). Review step doesn't disappear. Still worth doing. |
+| #4 | ❌ Dropped | "Annoying but not critical." Jira integration hard with self-hosted LLM. |
+| #5 | ☠️ Killed | Needs conversation logs → PII constraint. Hard blocker. |
+| #6 | ❌ Dropped | 0.6% sprint. Too small. Bundle into #3 as a feature. |
+| #7 | ❌ Dropped | Pain is in stakeholder iteration, not initial build. Low frequency. |
+| #8 | ❌ Dropped | Real but low impact. Bundle into #1 as background git-hook feature. |
+| #9 | 🔒 Access-gated | Strongest pain found (4-6h per story). 3-layer approval. Track as next tier. |
+| #10 | 🔒 Access-gated | Best QA entry point — self-approval path. Use as QA relationship opener. |
+
+## Top 3 for Real-World Validation
+
+**#1 → DL-3 candidate: Scriptwriter script defect diagnosis**
+Validation question: *"When a script breaks, what % of your time is diagnosis vs. the actual fix?"*
+Pilot design: test on already-fixed bugs, compare AI diagnosis to real diagnosis.
+
+**#2 → DL-3 candidate: DL-1 expansion to other analyst teams**
+Validation question: *"Do business stakeholders bring ad-hoc data requests to your analysts? How often per sprint?"*
+One interview confirms or kills. Tool already exists.
+
+**#3 → DL-3 candidate: Recurring report automation**
+Validation question: *"What does your Monday morning look like before you send the weekly report?"*
+Frame as: eliminate copy-paste/formatting work, not "automate your reports."
+
+---
+
 *Generated using `skill-hypothesis-generating.md` — Sources: Market scan (June 2026), DL-2 CustDev residuals, DL-1 team signals, DL-0 adjacent patterns*
+*Synthetic CustDev run: June 4, 2026*
 *Next run: after next CustDev block or market scan update*
