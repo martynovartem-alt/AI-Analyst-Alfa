@@ -125,9 +125,7 @@ One full cycle is ~3 hours. The loop is closed when the DL entry lives in `CLAUD
 | `CLAUDE_template.md` | Product context template — fill this in per product and rename to `CLAUDE.md` |
 | `skill-hypothesis-generating.md` | Generates hypothesis candidates from 3 sources (market, CustDev, product data) → prioritized list ready for hypothesis-check |
 | `Hypotheses_WW_YY.md` | Cross-role hypothesis runs — one file per run (e.g. `Hypotheses_23_26.md`, `Hypotheses_23_26_2.md`). Latest: `Hypotheses_23_26_2.md` |
-| `Hypotheses_DataAnalysts_23_26.md` | 10 market-sourced hypotheses for data analysts role |
-| `Hypotheses_ScenarioWriters_23_26.md` | 10 market-sourced hypotheses for chatbot scenario writers role |
-| `Hypotheses_QA_23_26.md` | 10 market-sourced hypotheses for QA engineers role |
+| `Hypotheses_AllRoles_23_26.md` | **Canonical** combined & skill-corrected hypotheses for all 3 roles (30 total), in Russian. Replaced the three per-role files (`Hypotheses_DataAnalysts/ScenarioWriters/QA_23_26.md`), now deleted. |
 | `skill-hypothesis-check.md` | Structures a raw idea into a testable hypothesis + ICE (1–10) + go/pivot/stop criteria |
 | `skill-synthetic-custdev.md` | Turns Claude into a specific ICP persona for a practice interview session |
 | `skill-market-scan.md` | Produces a structured market report: TAM, players, trends, gaps — all with sources |
@@ -200,7 +198,7 @@ Entries follow the format `DL-{N}`. Each entry must include a citation (quote or
 > "Reading code and logs takes about an hour. The fix itself is usually 15 minutes." — Synthetic CustDev persona (grounded in DL-2 interview pattern)
 > "20% sprint time on script fixes" — confirmed in real DL-2 interviews (not estimate)
 
-**ICE:** I=8, C=7, E=7 → **392**
+**ICE:** I=8, C=7, A=8 → **448** (standardized to I·C·A per `skill-hypothesis-generating.md`; prior record was I=8,C=7,E=7→392 on the Effort axis)
 
 **Validation still needed:**
 - [ ] 3–5 live interviews with scriptwriters: confirm diagnosis/fix time split in real numbers
