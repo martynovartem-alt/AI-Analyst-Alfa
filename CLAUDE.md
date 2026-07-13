@@ -9,7 +9,7 @@ This file provides product and team context for AI-assisted hypothesis discovery
 **Product:** AI Augmentation Platform for bank IT teams
 **What it does:** Identifies high-friction roles inside banks and ships AI tools that reduce manual time waste in those roles — without replacing people, augmenting their output.
 **Stage:** Post-MVP on two shipped products; entering next hypothesis discovery cycle.
-**Domain:** Russian/CIS bank IT departments — QA, analytics, business analysis, chatbot/IVR teams.
+**Domain:** Russian/CIS bank IT departments — analytics, business analysis, chatbot/IVR teams.
 
 ### Who I am
 
@@ -75,27 +75,30 @@ Product builder doing AI transformation inside banks. I find roles with measurab
 
 | Role | Access | External evidence | Key metric | Rank |
 |---|---|---|---|---|
-| Data analysts (same team as DL-1) | **Have access** | DL-1 already shipped here | SQL pain solved; remaining pain = dashboards, Excel reports, analysis commentary | **#1** |
+| Data analysts (same team as DL-1) | **Have access** | DL-1 already shipped here | DL-5 opened (dashboard/vitrina generation) — 1 live interview done, PoC + 3-5 more interviews pending | **#1** |
 | Chatbot scenario writers | **Have access** | None external — DL-2b internal signal | 20% sprint waste on script fixes confirmed; utterance writing ~5-10% sprint additional | **#2** |
-| QA engineers | No access yet | Strong — named pain "script fatigue" | State Street: 67% cut; DBS: 20 days → 1 | **#3** |
+| Product managers | Access unknown — not yet scanned | None gathered yet | TBD — needs market scan + access check | **#3** |
+| Product designers | Access unknown — not yet scanned | None gathered yet | TBD — needs market scan + access check | **#4** |
 
 > **Note:** "Chatbot scriptwriters" and "scenario writers" are the same role — one person writes both JS scripts and NLU training data (intents, utterances, RegExp). DL-3 and DL-4 both target this role.
 
-*Ranking logic: access is the binding constraint at <1 year tenure. QA has the strongest external evidence but no relationship — needs trust-building first. BA and scriptwriters can be interviewed now.*
+*Ranking logic: access is the binding constraint at <1 year tenure. Data analysts and scriptwriters can be interviewed now. Product managers and product designers are newly added candidates (July 2026) — access and external evidence still need to be established before they can be ranked against the existing two.*
 
 **Note on Scrum Masters:** Removed — they don't exist as a distinct role in this bank. Team leads double as SMs. The sprint reporting pain (30–120 min/sprint) is real but falls on team leads, not a separate role. Could surface as a secondary pain during team lead interviews.
 
+**Note on security approval (ИБ) as a cross-role blocker:** Surfaced independently in two synthetic CustDev sessions for two different roles — designer persona Ирина ("даже обычного Figma AI нет — IT не одобрил") and PM persona Сергей ("если нужен доступ к системам — тогда уже с ИБ"). Not yet confirmed in a live interview, but the pattern repeating across unrelated synthetic personas is worth tracking: any future AI tool requiring system/data access may face a security review gate independent of team-lead buy-in. Ask about typical ИБ approval turnaround time in the next live interview for any role, not just designers/PM.
+
 **Market scan findings (June 2026):**
-- QA "script fatigue" is a documented, named pain across Citi, HSBC, NatWest, Lloyds, Wells Fargo, DNB. AI-generated code is outpacing QA validation — 70–80% of devs use AI coding tools, QA adoption under 50%.
 - Data analysts (DL-1 team): "Business analyst" in this bank = analytics role (SQL, dashboards, Excel) — NOT a requirements-writing BA. Same team as DL-1. SQL pain is already solved. Remaining pain is dashboard creation, Excel report generation, analysis commentary writing. This is an extension hypothesis, not a fresh role.
 - Chatbot scriptwriter augmentation has zero published case studies externally. Either untapped or not yet done publicly.
 - Roles out of scope: Data engineers (context-heavy, same failure mode as DL-2), Security/Antifraud (different department).
 - Killed after synthetic CustDev: Intent coverage gap detection (needs conversation logs → PII constraint, hard blocker).
+- Product managers, product designers (added July 2026): no market scan run yet — needs a dedicated pass before these can be prioritized against data analysts / scriptwriters.
 
 **→ Next actions:**
 - **Done:** Market signal scan (June 2026)
-- **Next:** Pick data analysts (DL-1 extension) or scriptwriters → run `skill-hypothesis-check.md` → open DL-3
-  Suggested: Data analysts — existing relationship, SQL solved, now find the next bottleneck (dashboards / Excel / commentary)
+- **Done:** DL-5 opened for data analysts (July 10, 2026) — dashboard/vitrina generation from requirements
+- **Next:** 3–5 live interviews with DL-1 team (scoped: "draft survives changing requirements", not "generate after finalization") + technical PoC on self-hosted LLM. See DL-5 for full criteria.
 
 **Out of scope:** DevOps/SRE/infrastructure roles; Security/Antifraud — separate department, no access.
 
@@ -125,7 +128,7 @@ One full cycle is ~3 hours. The loop is closed when the DL entry lives in `CLAUD
 | `CLAUDE_template.md` | Product context template — fill this in per product and rename to `CLAUDE.md` |
 | `skill-hypothesis-generating.md` | Generates hypothesis candidates from 3 sources (market, CustDev, product data) → prioritized list ready for hypothesis-check |
 | `Hypotheses_WW_YY.md` | Cross-role hypothesis runs — one file per run (e.g. `Hypotheses_23_26.md`, `Hypotheses_23_26_2.md`). Latest: `Hypotheses_23_26_2.md` |
-| `Hypotheses_AllRoles_23_26.md` | **Canonical** combined & skill-corrected hypotheses for all 3 roles (30 total), in Russian. Replaced the three per-role files (`Hypotheses_DataAnalysts/ScenarioWriters/QA_23_26.md`), now deleted. |
+| `Hypotheses_AllRoles_23_26.md` | **Canonical** combined & skill-corrected hypotheses for scriptwriters and data analysts (20 total), in Russian. Replaced the per-role files (`Hypotheses_DataAnalysts/ScenarioWriters_23_26.md`), now deleted. |
 | `skill-hypothesis-check.md` | Structures a raw idea into a testable hypothesis + ICE (1–10) + go/pivot/stop criteria |
 | `skill-synthetic-custdev.md` | Turns Claude into a specific ICP persona for a practice interview session |
 | `skill-market-scan.md` | Produces a structured market report: TAM, players, trends, gaps — all with sources |
@@ -266,3 +269,54 @@ Entries follow the format `DL-{N}`. Each entry must include a citation (quote or
 - Previous: DL-0 (shipped — RegExp generation for same team)
 - Born from: DL-0 adjacent pain, Hypotheses_23_26_2.md run 2 top candidate
 - Running in parallel with: DL-3 (same scriptwriter team, different pain)
+
+---
+
+### DL-5 — AI-assisted dashboard/vitrina draft generation for data analysts (In Progress — opened July 10, 2026)
+
+**Hypothesis:**
+> Data analysts (DL-1 team) will cut dashboard/vitrina build time by ≥50% on the step after the first requirements draft exists, if an AI agent generates a draft vitrina structure and SQL from stated requirements — with error-prone spots (joins, aggregations) explicitly flagged for fast analyst review. Scope excludes the requirements-gathering/iteration step itself.
+
+**Origin:** Residual signal from a live DL-1 team interview (`Interview_DataAnalysts_28_26_Transcript1.md`, Вахрушева Т.И., July 9, 2026). Raw idea (H-DA-11 from that session's hypothesis-priority pass) originally assumed requirements get "finalized" before generation starts — reframed after synthetic CustDev exposed that assumption as false.
+
+**What we tested so far:**
+- Method: Live interview (n=1 — Вахрушева Т.И., DL-1 team, July 9, 2026)
+- Method: Hypothesis-check + ICE scoring (July 10, 2026)
+- Method: Synthetic CustDev (persona "Дмитрий," senior analyst, same team, July 10, 2026)
+- Method: Market scan (July 10, 2026) — global + RU BI / text-to-SQL landscape
+
+**What we learned so far:**
+1. Biggest reported time sink is dashboard/vitrina building from scratch — up to a month of cumulative time per instance, but low frequency (~1x/1–2 months; Power BI specifically ~3x/quarter)
+2. Real interview corrected the original framing: the bottleneck is **not** SQL/script writing, it's "множество итераций от заказчика" (repeated requirement-clarification cycles with the requester) — "сам запрос — это не самое трудоёмкое"
+3. Synthetic CustDev sharpened this further: "finalized requirements" don't really exist — they keep changing after development starts. Hypothesis pivoted from "generate after finalization" to "generate a draft that's expected to survive iteration"
+4. Synthetic CustDev's core objection — silent logic errors (e.g., duplicated rows from a bad JOIN) going unnoticed until a stakeholder call — is independently corroborated by the market scan, not just a local fear
+5. Market scan found no vendor selling specifically "draft that survives changing requirements" — the reframed angle may be genuine white space, not just this team's blind spot
+6. RU BI vendors (e.g., Visiology Cortex) already constrain AI answers to "approved" dashboards/vitrinas to manage exactly this silent-error risk — worth evaluating as a build-vs-reuse option before committing to custom build
+
+**Evidence so far:**
+> "Самое трудоёмкое — это... множество итераций от заказчика... а сам запрос, сам скрипт — это нет, не самое трудоёмкое." — Вахрушева Т.И., live interview, 09.07.2026
+> "Если ваш агент ждёт, пока требования зафиксируются — он будет ждать вечно." — Synthetic CustDev persona ("Дмитрий")
+> "A silent logic error in AI-generated SQL went undetected for 3 weeks and skewed Q3 revenue numbers by 11.7%." — Market scan finding (independent of this team, confirms the CustDev objection is a known industry pattern)
+
+**ICE:** I=7, C=4, A=9 → **252** (I·C·A per `skill-hypothesis-generating.md`). Confidence is capped at 4 — n=1 live interview, and the central assumption (draft vs. finalized) hasn't been tested with more than one respondent.
+
+**Validation still needed:**
+- [ ] 3–5 more live interviews with DL-1 team analysts (scoped to "draft survives changing requirements," not "generate after finalization") — confirm the requirements-iteration pattern generalizes beyond one respondent
+- [ ] Technical PoC on the self-hosted LLM: generate SQL/vitrina structure from 2–3 historical requirement sets, compare to what the analyst actually built — measure not just % match but **error types and how detectable they are**
+- [ ] Evaluate Visiology Cortex or a similar RU tool as a build-vs-buy alternative before committing dev time
+
+**Criteria:**
+- **Green:** 3+ of 5 confirm the "draft + expected edits" workflow is acceptable AND PoC shows logic errors (joins/aggregation) are either rare or easily detectable (not silent) → build
+- **Yellow:** Pain confirmed but PoC produces silent/hard-to-catch errors more often than acceptable → pivot: narrow to generating only the vitrina schema draft (no SQL) and leave SQL fully to the analyst
+- **Red:** 3+ of 5 say draft-vs-final doesn't help (still easier from scratch) OR PoC shows frequent undetectable logic errors → stop, evaluate adopting Visiology Cortex or similar instead of building in-house
+
+**What to do next:**
+- Next step: 3–5 interviews with DL-1 team, updated scope ("draft, not final")
+- Parallel: collect 2–3 historical requirement sets + actual analyst output for the PoC
+- Responsible: Product owner
+
+**Related:**
+- Previous: DL-1 (shipped, same team) — this is a DL-1 extension hypothesis, not a fresh role
+- Methodologically similar to: DL-3 (narrowed scope after a broader vibe-coding attempt failed in DL-2)
+- Born from: `Interview_DataAnalysts_28_26_Transcript1.md` (Вахрушева Т.И., 09.07.2026), H-DA-11 from that session's hypothesis-priority pass (10.07.2026)
+- Running in parallel with: DL-3, DL-4 (scriptwriter team, different pain)
