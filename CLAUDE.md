@@ -75,7 +75,7 @@ Product builder doing AI transformation inside banks. I find roles with measurab
 
 | Role | Access | External evidence | Key metric | Rank |
 |---|---|---|---|---|
-| Data analysts (same team as DL-1) | **Have access** | DL-1 already shipped here | DL-5 opened (dashboard/vitrina generation); DL-6…DL-15 opened from a 2nd respondent (14.07.2026) — see Decision Log | **#1** |
+| Data analysts (same team as DL-1) | **Have access** | DL-1 already shipped here | DL-5 in progress (dashboard/vitrina generation, now 2 respondents); DL-7…DL-19 opened across 3 respondents (Вахрушева, Миниахматова, Плеханова) — 5 killed, 5 yellow/pivot, 2 mixed/team-specific — see Decision Log | **#1** |
 | Chatbot scenario writers | **Have access** | None external — DL-2b internal signal | 20% sprint waste on script fixes confirmed; utterance writing ~5-10% sprint additional | **#2** |
 | Product designers | **Have access (via developer contact, since 14.07.2026)** | 2 of 10 initial hypotheses already confirmed & in development (H-PD-3/5, H-PD-4) — see `Hypotheses_ProductDesigners_28_26.md` | Shared blocker (role existence/reachability) resolved; still zero live interview with the designer themselves — only synthetic CustDev + a developer's status report | **#3** |
 | Product managers | Access unknown — market-scanned (3 rounds), but no live contact secured yet | None gathered yet — synthetic CustDev only | TBD — needs a warm intro before any live signal exists | **#4** |
@@ -294,13 +294,15 @@ Entries follow the format `DL-{N}`. Each entry must include a citation (quote or
 4. Synthetic CustDev's core objection — silent logic errors (e.g., duplicated rows from a bad JOIN) going unnoticed until a stakeholder call — is independently corroborated by the market scan, not just a local fear
 5. Market scan found no vendor selling specifically "draft that survives changing requirements" — the reframed angle may be genuine white space, not just this team's blind spot
 6. RU BI vendors (e.g., Visiology Cortex) already constrain AI answers to "approved" dashboards/vitrinas to manage exactly this silent-error risk — worth evaluating as a build-vs-reuse option before committing to custom build
+7. **Second respondent (Миниахматова, different team, 14.07.2026) independently confirms both pillars of the hypothesis** — low build frequency ("не так часто их создаю... было бы актуально, но опять-таки с периодичностью какой-то") and the requirements-interpretation bottleneck, echoed even outside BI work: "заказчик приходит, и мы понимаем, что на самом деле ему нужно не то, что он просит, а немножко другое." A third analyst (Плеханова, DL-16) shows the same root pattern in a Jira-adjacent context — three independent respondents now converge on "requirement interpretation, not execution, is the narrow point."
 
 **Evidence so far:**
 > "Самое трудоёмкое — это... множество итераций от заказчика... а сам запрос, сам скрипт — это нет, не самое трудоёмкое." — Вахрушева Т.И., live interview, 09.07.2026
 > "Если ваш агент ждёт, пока требования зафиксируются — он будет ждать вечно." — Synthetic CustDev persona ("Дмитрий")
 > "A silent logic error in AI-generated SQL went undetected for 3 weeks and skewed Q3 revenue numbers by 11.7%." — Market scan finding (independent of this team, confirms the CustDev objection is a known industry pattern)
+> "Ну, я их обычно один раз сделаю, и потом пишу скрипт по обновлению этих данных, и они уже отрабатывают автоматически... я не так часто их создаю." — Алия Миниахматова, live interview, 14.07.2026
 
-**ICE:** I=7, C=4, A=9 → **252** (I·C·A per `skill-hypothesis-generating.md`). Confidence is capped at 4 — n=1 live interview, and the central assumption (draft vs. finalized) hasn't been tested with more than one respondent.
+**ICE:** I=7, C=4, A=9 → **252** (I·C·A per `skill-hypothesis-generating.md`). Confidence was capped at 4 for n=1 — now n=2 live interviews confirm the core pattern independently; revisit the Confidence score on the next hypothesis-check pass rather than carrying it forward unexamined.
 
 **Validation still needed:**
 - [ ] 3–5 more live interviews with DL-1 team analysts (scoped to "draft survives changing requirements," not "generate after finalization") — confirm the requirements-iteration pattern generalizes beyond one respondent
@@ -322,3 +324,77 @@ Entries follow the format `DL-{N}`. Each entry must include a citation (quote or
 - Methodologically similar to: DL-3 (narrowed scope after a broader vibe-coding attempt failed in DL-2)
 - Born from: `Interview_DataAnalysts_28_26_Transcript1.md` (Вахрушева Т.И., 09.07.2026), H-DA-11 from that session's hypothesis-priority pass (10.07.2026)
 - Running in parallel with: DL-3, DL-4 (scriptwriter team, different pain)
+
+---
+
+### DL-7 — AI narrative summary for stakeholder reports, H-DA-3 (Killed — 09.07.2026)
+**Hypothesis:** Analysts will save time on report narratives if AI generates textual explanations of metric changes.
+**Test method:** Live interview — Вахрушева Т.И., DL-1 team, 09.07.2026.
+**Evidence:** «Обычно не тратим, потому что нас просят присылать просто числа.» / «Мне кажется, это бы могло улучшить, но сейчас не требуется. Ну, активно не требуется.» — Вахрушева Т.И., 09.07.2026.
+**Decision:** Red — killed. No stakeholder demand for narrative text; respondent explicitly says it isn't needed. Revisit only if stakeholders themselves request it.
+
+### DL-8 — AI brief for anomaly investigation, narrow scope, H-DA-2 partial test (Killed for tested scope — 09.07.2026)
+**Hypothesis:** Analysts will save 30–60 min per alert if AI investigates root causes of anomalies.
+**Test method:** Live interview — Вахрушева Т.И., 09.07.2026. Only data-quality anomalies (missing values, mismatched columns) were tested — metric-threshold alerts (the original H-DA-2 scope) weren't covered.
+**Evidence:** «Редко-редко, я бы сказала, единичный случай.» / «Ну, этап предобработки, это не очень долго» — Вахрушева Т.И., 09.07.2026.
+**Decision:** Red for the tested narrow case (data-quality anomalies — rare, self-handled, no tool needed). Original H-DA-2 scope (metric-drop alerts) remained untested here → re-opened and confirmed as real pain in DL-11, different scope.
+
+### DL-9 — Auto-refresh of recurring reports, H-DA-1 (Killed — 09.07.2026, confirmed by 2nd respondent 14.07.2026)
+**Hypothesis:** Analysts will save 3–5h/week if AI auto-refreshes recurring reports.
+**Test method:** Live interviews — Вахрушева Т.И. (09.07.2026) + Миниахматова (14.07.2026, independent confirmation, different team).
+**Evidence:** «Нет, они все, на самом деле, автоматически. Мы пишем скрипт, ставим по времени...» — Вахрушева Т.И. «Но у нас скрипты написаны. Мы тоже вручную это не считаем.» — Миниахматова.
+**Decision:** Red — killed, confirmed by two independent respondents from different teams. Recurring-report refresh is already fully automated by existing scripts; no manual analyst time spent here.
+
+### DL-10 — Knowledge base for onboarding / shared SQL library, H-DA-12 (consolidated, 3 respondents; merges DL-6) (Mixed — 09.07–22.07.2026)
+**Hypothesis:** Onboarding time will drop and/or experienced analysts will save time with a shared knowledge base (SQL query library, glossary, metric definitions).
+**Test method:** Live interviews — Вахрушева Т.И. (09.07.2026), Миниахматова (14.07.2026), Плеханова (22.07.2026) — 3 respondents, 3 different teams.
+**Evidence:** «У нас таких, к сожалению, нет. Вот в этом большая проблема.» — Вахрушева Т.И. But: «Я очень люблю писать оптимизированные SQL-запросы, поэтому, наверное, я в этом даже как будто не нуждаюсь.» — Миниахматова. «...было бы полезно... но сейчас необходимости нет.» — Плеханова.
+**Decision:** Red for "shared library for experienced analysts" — 3/3 respondents show no personal need, informal script-sharing already covers it. Onboarding-specific pain (for an actual new hire) remains untested — all 3 respondents were experienced, not new. Spun off: data-source catalog idea (see DL-12).
+
+### DL-11 — AI agent for metric-drop root-cause investigation, H-DA-2 retest on a different team (Yellow — pivot, 14.07.2026, updated 22.07.2026)
+**Hypothesis:** Analysts will save time if an agent has knowledge of all anomalies and data sources to help investigate metric drops.
+**Test method:** Live interview — Миниахматова (14.07.2026), corroborated by Вахрушева's own example the same day and directly by Плеханова (22.07.2026, see DL-17).
+**Evidence:** «Частая история, потому что Маша делает овервью каждый день. ...может тратить минимум час, но иногда может целый день.» — Миниахматова. «Я иногда могу потратить 30 минут в день, а иногда могу потратить всю неделю.» — Плеханова, 22.07.2026.
+**Decision:** Yellow — pivot. Pain is real and daily (contrasts with DL-8's "rare" verdict — different scope). "Agent with knowledge of the whole bank" is an aspirational scope, not directly testable → narrowed into DL-17 (incident classification, a concrete sub-task).
+
+### DL-12 — AI catalog of data sources across bank warehouses/vitrinas (Mixed, team-specific — 14.07.2026, updated 22.07.2026)
+**Hypothesis:** Analysts will save time if an agent knows table/field structures across bank data warehouses and points to where data lives.
+**Test method:** Live interviews — Миниахматова (14.07.2026), Плеханова (22.07.2026, independent second team).
+**Evidence:** «Нет, у нас ничего нет. Мы узнаем только как-то сами. ...часто бывает, что можно целый вечер провести... чтобы что-то найти.» — Миниахматова. Contradicted by Плеханова: «Мы, как правило, используем определенный набор таблиц, которые мы уже знаем... Это большая редкость.»
+**Decision:** Red for Плеханова's team (stable, well-known table set — not a pain there). Pain confirmed substantively for Миниахматова's team. Likely team/product-specific rather than role-wide — not prioritized as a standalone hypothesis without narrowing to teams with frequent novel queries.
+
+### DL-13 — AI narrative for presentation slides, H-DA-9, 2nd respondent + primary source (Killed — 14.07.2026, closed 22.07.2026)
+**Hypothesis:** Analysts will save 30–45 min per presentation if AI writes the slide narrative text.
+**Test method:** Live interviews — Миниахматова (14.07.2026, describes it as someone else's work) + Плеханова (22.07.2026, the actual person doing this work, first-hand).
+**Evidence:** «На саму презентацию мало... на само заполнение на самом деле немного. У нас еще есть Ира Чуб, которая занимается... сбором инфы.» — Плеханова, 22.07.2026.
+**Decision:** Red — killed, three respondents in a row including the primary source. Slide text itself takes little time; the real time sink is upstream requirement negotiation and impact calculations, not narrative writing.
+
+### DL-15 — AI summary of anomaly root causes after investigation (Killed — 14.07.2026, closed 22.07.2026)
+**Hypothesis:** Analysts will save time if AI automates writing the post-investigation summary (incident → intent → metric impact).
+**Test method:** Live interviews — Миниахматова (14.07.2026, describes Плеханова's practice) + Плеханова (22.07.2026, first-hand).
+**Evidence:** «Написать отчет у меня занимает, не знаю, 5-7 минут... я не готовлю там прям огромные какие-то расписные истории.» — Плеханова, 22.07.2026. «Основное мое время именно уходит на анализ.»
+**Decision:** Red — killed. Writing the summary text is already fast (5–7 min); the real bottleneck is upstream analysis, not text generation. Closes H-DA-3/DL-7 for a second team with the same verdict.
+
+### DL-16 — Jira automation: task creation + status collection, H-DA (consolidated, 2 respondents; merges DL-14) (Split into DL-18/DL-19 — 14.07–23.07.2026)
+**Hypothesis:** Analyst/team lead will save time if an AI agent auto-creates Jira tasks from unstructured customer requests and auto-collects task statuses for a weekly report.
+**Test method:** Live interviews — Миниахматова (14.07.2026), Плеханова (22.07.2026, independent 2nd team, 2nd facet of the pain).
+**Evidence:** «Я практически весь день только тем и занималась, что заводила их в джиро.» — Миниахматова. «Меня на это уходит на весь отдел вся пятница... я эксельку выгружаю, собираю, просто раскрашиваю.» — Плеханова.
+**Decision:** Yellow — pivot. Pain confirmed by 2 independent respondents, 2 different facets (task creation vs. status rollup). Split into two separately testable hypotheses — see DL-18 (task creation) and DL-19 (status collection).
+
+### DL-17 — AI classification of customer messages against incidents (Yellow — pivot, 22.07.2026)
+**Hypothesis:** A ЧБ-1 analyst will cut time confirming incident impact if an AI classifier can match incoming message text to a registered incident, replacing manual intent review + scriptwriter consultation.
+**Test method:** Live interview — Плеханова, 22.07.2026.
+**Evidence:** «Сэкономило бы колоссальное количество времени, но есть одна проблема. На текущий момент аварии никак не размечаются. И обращения по этим авариям никак не размечаются... Даже не только в БД. В целом данные в компании такие отсутствуют.»
+**Decision:** Yellow — pivot. Pain is real and daily, but no labeled training/matching data exists anywhere in the company — can't be tested as a straight classifier. Narrow to zero/few-shot classification against incident description text, validated on historical known-incident examples, before any PoC.
+
+### DL-18 — Auto-create Jira tasks from customer requests, split from DL-16 (component A) (Yellow/In Progress — opened 23.07.2026)
+**Hypothesis:** Analysts will save ~3h/week entering Jira tasks if AI auto-creates tasks from customer requests.
+**Test method:** Reused live-interview data (Миниахматова, Плеханова) + synthetic CustDev with a team-lead persona, 23.07.2026.
+**Evidence:** «Не факт. ...если ИИ создаст задачу, но неправильно поймёт, что заказчик хотел, я всё равно буду это разгребать, только на другом этапе. Мне не нужно, чтобы задачи появлялись быстрее — мне нужно, чтобы они появлялись правильно.» — synthetic team-lead persona, 23.07.2026.
+**Decision:** Yellow — pivot. Pain is real but the target audience may be wrong (team leads don't create tasks personally — rank-and-file analysts do), and the real bottleneck may be requirement clarification with the requester, not task creation itself. Test on individual analysts next; split "time to create" from "time waiting on a clarifying answer."
+
+### DL-19 — Auto-collect statuses/deadlines for weekly team report, split from DL-16 (component B) (Yellow/In Progress — opened 23.07.2026)
+**Hypothesis:** A team lead will save time preparing the weekly status report if an agent finds stale/overdue Jira tasks, pings analysts for status/deadline/reason confirmation, and compiles the report.
+**Test method:** Reused live-interview data (Плеханова) + synthetic CustDev with a team-lead persona, 23.07.2026.
+**Evidence:** «Меня на это уходит на весь отдел вся пятница... основное время именно уходит на то, чтобы сбиться с каждым аналитиком и спросить, ты обновил?» — Плеханова, 22.07.2026. «Вот это уже интереснее. ...Но тогда мне нужно доверять, что он ничего не напутал в том, что есть в системе.» — synthetic team-lead persona, 23.07.2026.
+**Decision:** Yellow — pivot. Pain confirmed and mechanism validated (active polling, not passive aggregation), but the single time figure is n=1/unmeasured, and analyst responsiveness to an automated ping (vs. a human team lead) is untested. Pilot for 1 sprint: draft report with flagged gaps, team lead fills in, measure analyst response rate/speed.
