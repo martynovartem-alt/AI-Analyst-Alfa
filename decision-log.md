@@ -1,27 +1,161 @@
 # Decision Log
 
-> Canonical log of all hypothesis cycles. One entry per cycle.
-> After each cycle, paste the new DL-N entry into the `## Decision Log` section of `CLAUDE.md` so future sessions inherit context.
-> **Evidence required** — no citation = entry is not valid.
+> **Канонический лог всех циклов проверки гипотез — полные записи DL-0 и далее живут только здесь.**
+> После каждого цикла: полная запись DL-N добавляется в этот файл, а в `CLAUDE.md → ## Decision Log Index` обновляется её однострочная сводка. Цикл закрыт, когда есть и то, и другое.
+> **Evidence required** — запись без цитаты/данных не валидна. Исключение: parked-гипотезы (не тестировались) допустимы без evidence, но с явной пометкой «untested».
 
 ---
 
-See `CLAUDE.md → ## Decision Log` for DL-0 through DL-4. DL-5 onward live here until curated into `CLAUDE.md`.
-Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 entry now resolved into `CLAUDE.md` (dashboard/vitrina draft generation, opened 10.07.2026) describe the same underlying interview at different stages of the workflow — not a contradiction, but not yet reconciled into one entry either.
+*(DL-0–DL-4 перенесены сюда из `CLAUDE.md` 23.07.2026; содержание без изменений, у DL-3/DL-4 добавлена датированная пометка о статусе.)*
+
+## DL-0 — RegExp Auto-Generator for chatbot scenario writers (Shipped)
+**Hypothesis:** Scenario writers will recover ≥15% sprint capacity if given LLM-assisted RegExp generation from natural language intent descriptions.
+**Test method:** Production deployment + sprint velocity measurement with full scenario-writing team.
+**Evidence:** "30% sprint time recovered for scenario writers" — team lead estimate post-ship, not formally tracked. Directionally reliable, not independently verified.
+**Decision:** Green — shipped and running. ✓
 
 ---
 
-## DL-5 — Составление витрины по ТЗ (Power BI) (09.07.2026)
+## DL-1 — Text→SQL multiagent system for data analysts (Shipped)
+**Hypothesis:** Data analysts will expand sprint capacity if ad-hoc SQL requests are handled by a Plan-Execute LLM pipeline instead of manual query writing.
+**Test method:** Production deployment + capacity measurement with full analytics team.
+**Evidence:** "Analytics team capacity expanded by ~20% per sprint" — team lead estimate post-ship, not formally tracked. Directionally reliable, not independently verified.
+**Decision:** Green — shipped and running. ✓
 
-**Гипотеза:**
-> Аналитики сэкономят время, если ИИ будет по ТЗ автоматически создавать витрину в Power BI.
+---
+
+## DL-2 — Vibe coding tool for chatbot scriptwriters (Killed)
+**Hypothesis:** Giving scriptwriters a vibe coding tool (Kilo Code) lets them stop writing code manually → non-technical hires replace expensive code-savvy people.
+**Test method:** Several in-depth interviews + live pilot with one scriptwriter on Kilo Code.
+**What we learned:**
+1. Vibe coding tools perform poorly on context-heavy codebases, writing new functions, and consistent output quality.
+2. Catching tool mistakes still requires understanding code — the skill requirement doesn't disappear.
+3. Core assumption (non-technical person can own the output) is false with current tooling.
+**Evidence:** "Catching tool mistakes still requires understanding code" — confirmed in live pilot.
+**Decision:** Red — killed. Headcount-replacement angle is invalid with current AI tooling.
+
+---
+
+## DL-2b — Augment scriptwriters on script fixes (Parked — superseded by DL-3)
+**Hypothesis (untested):** Existing scriptwriters can recover the confirmed 20% sprint waste on script fixes if given AI augmentation tools adapted to their codebase context — without requiring non-technical replacement hires.
+**Why parked:** Superseded by DL-3, which tests a specific narrower angle (diagnosis-only) from the same residual signal.
+
+---
+
+## DL-3 — AI script defect diagnosis for chatbot scriptwriters (In Progress — opened June 4, 2026)
+
+> **Status note (23.07.2026):** дедлайн 14.06.2026 прошёл; ни живые интервью, ни PoC в репозитории не зафиксированы — вся валидация пока синтетическая. Гайды для интервью готовы (`Interview_Scriptwriters_28_26_H1_SW.md`, `Interview_Scriptwriters_28_26_H2_SW.md`). 23.07.2026 появился параллельный трек по той же роли из product data (`Cases_Scriptwriters_28_26.md` → `Hypotheses_Scriptwriters_FromCases_28_26.md`); описанный там пилот Cursor (май–июнь, 5 сценаристов) не имеет записанных результатов — если он состоялся, его итог напрямую влияет на вердикт DL-2 и на скоуп этой записи.
+
+**Hypothesis:**
+> Chatbot scriptwriters will reduce script-fix time by ≥50% if AI correctly identifies the root cause of a broken script from script + error log in ≥70% of cases — without writing or modifying code.
+
+**Origin:** Residual signal from DL-2 interviews (20% sprint on fixes confirmed). Key insight: majority of fix time is diagnosis, not the fix itself (1h diagnosis / 15min fix ratio). Diagnosis-only scope avoids DL-2 failure mode (no code generation required → lower LLM quality bar).
+
+**What we tested so far:**
+- Method: Synthetic CustDev (persona simulation, June 4, 2026)
+- Method: Market scan (June 2026) — no external case studies found for diagnosis-only tools in chatbot teams; angle appears untested publicly
+- Method: Hypothesis-check + ICE scoring (June 4, 2026)
+
+**What we learned so far:**
+1. Pain confirmed real from DL-2 interviews — not an assumption
+2. Synthetic CustDev confirmed: diagnosis time >> fix time ratio holds under pressure
+3. Acceptance criterion handed by persona: test on already-fixed scripts — if AI diagnosis matches real root cause ≥70% of the time, trust is established
+4. Key technical risk: self-hosted open-source LLM (LLaMA/Mistral) on large interconnected JS scripts — must scope to single-script input, not full codebase
+5. Critical objection: "If wrong diagnosis >20-30% of the time, I stop trusting it and go back to manual"
+
+**Evidence so far:**
+> "Reading code and logs takes about an hour. The fix itself is usually 15 minutes." — Synthetic CustDev persona (grounded in DL-2 interview pattern)
+> "20% sprint time on script fixes" — confirmed in real DL-2 interviews (not estimate)
+
+**ICE:** I=8, C=7, A=8 → **448** (standardized to I·C·A per `skill-hypothesis-generating.md`; prior record was I=8,C=7,E=7→392 on the Effort axis)
+
+**Validation still needed:**
+- [ ] 3–5 live interviews with scriptwriters: confirm diagnosis/fix time split in real numbers
+- [ ] Technical PoC: collect 10 already-fixed scripts + error logs, run LLM diagnosis, measure accuracy vs. real root causes
+
+**Criteria:**
+- **Green:** 3+ of 5 confirm diagnosis time >50% of fix time AND PoC accuracy ≥70% → build
+- **Yellow:** Pain confirmed but PoC accuracy 50–70%, OR only 2/5 confirm → pivot: narrow to specific JS error types where LLM performs best
+- **Red:** Fix time > diagnosis time for majority, OR PoC accuracy <50% → stop
+
+**What to do next:**
+- Next step: Schedule 3–5 interviews with scriptwriter team (warm contact from DL-2)
+- Deadline: June 14, 2026 (10 days from opening) — **прошёл, см. Status note выше**
+- Responsible: Product owner
+
+**Related:**
+- Previous: DL-2 (killed), DL-2b (parked, superseded by this entry)
+- Hypothesis born from: DL-2 residual signal (20% sprint on fixes)
+
+---
+
+## DL-4 — AI utterance generation for NLU training (In Progress — opened June 4, 2026)
+
+> **Status note (23.07.2026):** дедлайн 14.06.2026 прошёл; живые интервью, language quality test и domain test в репозитории не зафиксированы. Смежные вопросы (RegExp/VOC) включены в готовый гайд второго раунда (`Interview_Scriptwriters_28_26_H2_SW.md`).
+
+**Hypothesis:**
+> Scenario writers will recover ≥10% sprint capacity if AI generates diverse NLU training utterances from intent descriptions, reducing utterance-writing time from 1.5–2h per intent to under 30 minutes.
+
+**Origin:** Adjacent unsolved pain on DL-0 team. DL-0 solved RegExp generation — utterance writing was always the next bottleneck. Pattern: every shipped product leaves 2–3 adjacent pains on the same team. Confirmed by synthetic CustDev that utterances take 1.5–2h per intent with 2–4 intents per sprint.
+
+**What we tested so far:**
+- Method: Synthetic CustDev (persona simulation, June 4, 2026)
+- Method: Hypothesis-check + ICE scoring (June 4, 2026)
+- Method: Run 2 hypothesis generation — confirmed as top candidate from 10 new hypotheses
+
+**What we learned so far:**
+1. Pain: 1.5–2h per intent × 2–4 intents/sprint = 3–8h/sprint on utterances alone (~5–10% sprint)
+2. DL-0 trust transfers directly — same team, same "describe → generate → review" pattern
+3. Key risk #1: Output diversity — repetitive utterances harm NLU model quality more than none
+4. Key risk #2: Domain-specific intents (mortgages, payments) — AI may lack bank-specific terminology
+5. Key risk #3: Russian language quality — unnatural phrasing is worse than manually written utterances
+6. Acceptance bar is low: "I describe the intent, it gives examples, I review" — same workflow as DL-0
+
+**Evidence so far:**
+> "Every sprint we have 2–4 new intents. Utterances are still fully manual — the boring part of the job." — Synthetic CustDev persona (grounded in DL-0 team context)
+> "RegExp generator saved a lot — but utterances are still fully manual." — Synthetic CustDev persona
+
+**ICE:** I=7, C=7, E=8 → **392** *(оценка осталась на оси Effort; при пересмотре привести к I·C·A, как сделано для DL-3)*
+
+**Validation still needed:**
+- [ ] 3–5 live interviews with DL-0 scenario writers: confirm utterance time and sprint frequency
+- [ ] Language quality test: generate 50 utterances for a real bank intent, have a scenario writer grade diversity + naturalness
+- [ ] Domain test: pick a bank-specific intent (e.g. "early mortgage repayment"), check if LLM output is usable
+
+**Criteria:**
+- **Green:** 3+ of 5 confirm utterance writing >1h per intent AND language quality test passes writer review ≥70%
+- **Yellow:** Pain confirmed but Russian quality or diversity below threshold → pivot: human-in-the-loop editing step, generate 30 drafts → writer selects + edits best 20
+- **Red:** Utterance writing <30 min per intent (pain too small) OR output quality unacceptable after editing → stop
+
+**What to do next:**
+- Next step: Interview DL-0 team — warm contact, same team as RegExp generator pilot
+- Parallel: Run a quick language quality test with 1 real intent before interviews (2h dev work)
+- Deadline: June 14, 2026 — **прошёл, см. Status note выше**
+- Responsible: Product owner
+
+**Related:**
+- Previous: DL-0 (shipped — RegExp generation for same team)
+- Born from: DL-0 adjacent pain, `archive/Hypotheses_23_26_2.md` run 2 top candidate
+- Running in parallel with: DL-3 (same scriptwriter team, different pain)
+
+---
+
+## DL-5 — AI-черновик витрины/дашборда по требованиям для аналитиков данных (объединённая запись, 09.07–14.07.2026)
+
+> **Примечание (23.07.2026):** ранее существовали две записи DL-5 — «Составление витрины по ТЗ (Power BI)» здесь (сырой сигнал интервью, 09.07) и «AI-assisted dashboard/vitrina draft generation» в `CLAUDE.md` (версия после hypothesis-check, 10.07). Это один и тот же цикл на разных стадиях — сведены в одну запись.
+
+**Гипотеза (после hypothesis-check и рефрейминга, 10.07.2026):**
+> Аналитики данных (команда DL-1) сократят время сборки дашборда/витрины на ≥50% на шаге **после появления первого черновика требований**, если AI-агент генерирует черновик структуры витрины и SQL из заявленных требований — с явной пометкой ошибкоопасных мест (JOIN'ы, агрегации) для быстрой проверки аналитиком. Скоуп исключает сам этап сбора/итераций требований.
+
+*Исходная формулировка (09.07, до рефрейминга): «Аналитики сэкономят время, если ИИ будет по ТЗ автоматически создавать витрину в Power BI» — предполагала генерацию после «финализации» требований; синтетический CustDev показал, что финализированных требований не существует.*
 
 **Что проверяли:**
-- Метод: живое интервью
-- Объём: 1 респондент (Вахрушева Т.И., аналитик данных, команда DL-1)
-- Период проверки: 1 день (09.07.2026)
+- Метод: живое интервью — 1 респондент (Вахрушева Т.И., аналитик данных, команда DL-1, 09.07.2026); независимое подтверждение ключевых наблюдений — Миниахматова, другая команда, 14.07.2026
+- Метод: hypothesis-check + ICE (10.07.2026)
+- Метод: синтетический CustDev (персона «Дмитрий», сеньор-аналитик той же команды, 10.07.2026)
+- Метод: market scan (10.07.2026) — глобальный + RU BI / text-to-SQL ландшафт
 
-**Что узнали (3-5 пунктов):**
+**Что узнали:**
 1. Респондент сама называет разработку отчётности и дэшбордов (BI) самой трудоёмкой частью своей работы и говорит, что дэшборды (BI) ей нравятся меньше всего.
 2. Время сборки дашборда сильно разнится: минимум ~сутки на "нормальный" дашборд, максимум ~неделя у неё лично ("у кого-то быстрее"). Для сложного отчёта "с нуля" (SQL с нуля + макет с нуля + сбор и согласование требований с нуля) суммарно может уйти до месяца — не круглосуточной работы, а растянутой во времени.
 3. Задачи по Power BI приходят нечасто: новый дашборд требуется примерно раз в месяц или раз в два месяца; за последние 3 месяца было 3 такие задачи.
@@ -39,24 +173,49 @@ Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 ent
 >
 > «Ну, я их обычно один раз сделаю, и потом пишу скрипт по обновлению этих данных, и они уже отрабатывают автоматически... Было бы актуально, но опять-таки с периодичностью какой-то... я не так часто их создаю.» (12:53–12:54)
 > «В чём трудность новичкам, [так] что они плохо понимают язык заказчиков, что они хотят... заказчик приходит, и мы понимаем, что на самом деле ему нужно не то, что он просит, а немножко другое.» (12:59–13:00)
-> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_Analitik_Maniavmatova`)
+> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md`)
+
+**Дополнительно узнали на этапе hypothesis-check / синтетического CustDev / market scan (10.07.2026):**
+9. Синтетический CustDev: «финализированные требования» на практике не существуют — они продолжают меняться после начала разработки. Гипотеза сместилась с «генерация после финализации» на «черновик, который переживёт итерации».
+10. Ключевое возражение синтетического CustDev — тихие логические ошибки (например, задвоение строк из-за неправильного JOIN), незамеченные до звонка стейкхолдера, — независимо подтверждено market scan'ом как известный индустриальный паттерн, а не локальный страх.
+11. Market scan не нашёл вендора, продающего именно «черновик, переживающий смену требований» — рефреймированный угол может быть настоящим white space.
+12. RU BI-вендоры (например, Visiology Cortex) уже ограничивают AI-ответы «утверждёнными» дашбордами/витринами ровно из-за риска тихих ошибок — оценить как build-vs-reuse вариант до собственной разработки.
+
+**Цитаты / данные (этап 2):**
+> «Если ваш агент ждёт, пока требования зафиксируются — он будет ждать вечно.» — синтетическая персона «Дмитрий», 10.07.2026
+> "A silent logic error in AI-generated SQL went undetected for 3 weeks and skewed Q3 revenue numbers by 11.7%." — market scan finding (независимо от этой команды; подтверждает, что возражение CustDev — известный индустриальный паттерн)
+
+**ICE:** I=7, C=4, A=9 → **252** (I·C·A по `skill-hypothesis-generating.md`). Confidence = 4: центральное допущение («черновик vs финал») проверено только на n=1; частота задач при этом уже двумя респондентами подтверждена как низкая.
 
 **Решение:**
-- [ ] Зелёный — продолжаем
+- Цикл открыт, вердикт не вынесен. Существенная поправка после двух респондентов: боль реальна, но частота низкая (~1×/1–2 месяца у обеих; Power BI ~3×/квартал) — главный открытый вопрос: какая доля спринта фактически уходит на витрины/BI.
+
+**Validation still needed:**
+- [ ] Ещё 2–4 живых интервью с аналитиками DL-1 (скоуп «черновик переживёт смену требований», не «генерация после финализации») — обобщается ли паттерн итераций требований; заодно зафиксировать долю спринта на витрины/BI. Плеханова уже опрошена 22.07, но не по теме витрин (см. **DL-15/DL-16/DL-17**) — вопрос о доле спринта остаётся открытым
+- [ ] Технический PoC на self-hosted LLM: сгенерировать SQL/структуру витрины из 2–3 исторических наборов требований, сравнить с тем, что аналитик реально построил — мерить не только % совпадения, но **типы ошибок и их обнаруживаемость**
+- [ ] Оценить Visiology Cortex или аналогичный RU-инструмент как build-vs-buy альтернативу до коммита dev-времени
+
+**Критерии:**
+- **Зелёный:** 3+ из 5 подтверждают приемлемость воркфлоу «черновик + ожидаемые правки» И PoC показывает, что логические ошибки (JOIN/агрегации) редки или легко обнаружимы (не тихие) → строим
+- **Жёлтый:** Боль подтверждена, но PoC даёт тихие/трудноуловимые ошибки чаще допустимого → pivot: генерировать только черновик схемы витрины (без SQL), SQL остаётся полностью на аналитике
+- **Красный:** 3+ из 5 говорят, что черновик-vs-финал не помогает (проще с нуля) ИЛИ PoC показывает частые необнаружимые логические ошибки → стоп, оценить внедрение Visiology Cortex или аналога вместо собственной разработки
 
 **Что делаем дальше:**
-- Следующий шаг: 2–4 интервью с другими аналитиками той же команды (респондент сама указала на Машу Плеханову как на человека с большим объёмом описательной работы — это интервью состоялось, см. **DL-15/DL-16/DL-17**, но не по теме Power BI/витрин конкретно, поэтому вопрос о доле спринта на витрины остаётся открытым) — зафиксировать долю спринта на витрины/BI и проверить, обобщается ли паттерн "SQL — лёгкий, требования и макет — трудоёмкие"
+- Следующий шаг: 2–4 интервью с DL-1 командой в обновлённом скоупе («черновик, не финал») — зафиксировать долю спринта на витрины/BI и проверить, обобщается ли паттерн "SQL — лёгкий, требования и макет — трудоёмкие"
+- Параллельно: собрать 2–3 исторических набора требований + фактический результат аналитика для PoC
 - Ответственный: Product owner
 - Дедлайн: не указан
 
 **Связанные:**
-- Предыдущее решение: DL-1 (shipped — Text→SQL для той же команды аналитиков)
+- Предыдущее решение: DL-1 (shipped — Text→SQL для той же команды аналитиков) — это расширение DL-1, не новая роль
+- Методологически похоже на: DL-3 (сужение скоупа после провала более широкой попытки в DL-2)
 - Связано с: DL-16 (Плеханова) — тот же паттерн "узкое место в интерпретации требований заказчика, не в исполнении", третий независимый респондент
-- Гипотеза, которая родилась отсюда: не проверяли — в черновике был указан H-DA-3, но в `Hypotheses_AllRoles_23_26.md` H-DA-3 — это "Автогенерация executive summary", другая гипотеза. Черновик DL-5 в конфликтном `CLAUDE.md` ссылается на H-DA-11, но такой записи в текущем файле гипотез нет — нужно свериться отдельно, прежде чем указывать здесь.
+- Гипотеза родилась из: `Interview_DataAnalysts_28_26_Transcript1.md` (Вахрушева Т.И., 09.07.2026); сырой кандидат носил ID **H-DA-11** в прогоне приоритизации 10.07.2026 и намеренно не дублируется в `Hypotheses_DataAnalysts_28_26.md` (см. строку «H-DA-11 → DL-5» в ранжированной таблице того файла). Нумерация H-DA-11+ продолжает июльскую линию и не связана с H-DA-1…10 из `Hypotheses_AllRoles_23_26.md` (прежняя пометка о «несуществующей записи» снята 23.07.2026)
+- Идёт параллельно с: DL-3, DL-4 (команда сценаристов, другая боль)
 
 **Авторство:**
 - Кто принял решение: Григоренко Ольга Игоревна
-- Кто участвовал в обсуждении: Вахрушева Татьяна Ивановна
+- Кто участвовал в обсуждении: Вахрушева Татьяна Ивановна, Алия Миниахматова (независимое подтверждение, 14.07.2026)
 
 ---
 
@@ -175,7 +334,7 @@ Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 ent
 > Источник: Вахрушева Татьяна Ивановна, живое интервью 09.07.2026 (`Interview_DataAnalysts_28_26_Transcript1.md`, 16:05–20:35)
 >
 > «Но у нас скрипты написаны. Мы тоже вручную это не считаем. У нас написаны скрипты, которые какие-то промежуточные витрины... обрабатывают, забирают данные с Ры и Вока, считают по сессиям, была автоматизирована сессия или нет.» (13:15–13:16)
-> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_Analitik_Maniavmatova`)
+> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md`)
 
 **Решение:**
 - [x] Красный — стоп: пересборка/автообновление регулярных отчётов уже закрыто существующей автоматизацией, острой боли на этом конкретном шаге нет. Второй респондент из другой команды подтверждает независимо — можно считать это устойчивым для роли, не только для команды Вахрушевой.
@@ -230,7 +389,7 @@ Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 ent
 > «Я думаю, что для меня написать SQL-запрос, в общем-то, не проблема... Я очень люблю писать оптимизированные SQL-запросы, поэтому, наверное, я в этом даже как будто не нуждаюсь.» (13:28)
 > «Иногда бывают такие отхоки, когда... мы не знаем источники, где это можно было бы смотреть.» (13:17–13:18)
 > «Это у всех, кто работает с данными, для всех это было бы актуально. Даже для наших ближайших коллег из департамента.» (13:32)
-> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_Analitik_Maniavmatova`)
+> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md`)
 >
 > «Мы иногда друг у друга спрашиваем, вот есть новый кейс, может кто-то это уже делал, поделитесь скриптиком. Да, такое было бы полезно... но сейчас необходимости нет.»
 > «А, минимально. У нас каждый день аналитики собираются, наша команда, и мы друг с другом каждый день общаемся. Плюс у нас есть общие чаты, в которых, если у кого-то что-то не так, ты написал, тебе сразу помогли.»
@@ -286,7 +445,7 @@ Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 ent
 > «А может быть и больше, если она несколько дней не может найти причину падения.» (13:13)
 > «...глобально в идеале хотелось бы какую-то интеллектуальную сущность, которая находится в информационном поле всего абсолютно банка, и она нам может выдавать ответы, что происходило... Ну да, это прямо вот мечта, наверное. И агент мечты.» (13:05–13:06)
 > «У нас ходит Маша Плеханова. Но она, правда, сейчас в отпуске.» (12:40–12:41)
-> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_Analitik_Maniavmatova`)
+> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md`)
 >
 > «По анализу мне хорошо вспоминается анализ, почему у нас проседает аут-автоматизация за последние 4 месяца на интентах по играм. То есть сейчас бы все есть игры какие-то, вот, и нужно было понять, почему там падает она.» (05:27, Вахрушева)
 > Источник: Вахрушева Татьяна Ивановна, живое интервью 09.07.2026 (`Interview_DataAnalysts_28_26_Transcript1.md`)
@@ -342,7 +501,7 @@ Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 ent
 > «...такая боль, что проблема с тем, что мы не знаем, где что лежит, и это надо очень долго искать. Я думаю, что это у всех, кто работает с данными, для всех это было бы актуально.» (13:32)
 > «...если был бы какой-то и агент, который бы обладал информацией обо всех данных, которые лежат в хранилищах, которого можно было бы спросить, что вот такая информация, где она лежит. Он бы говорил, допустим, что такая информация находится там-то, там-то... Говорил бы, в каких полях это лежит.» (13:17–13:18, две соседние реплики одного и того же респондента)
 > «...часто бывает, что можно целый вечер провести, если время позволяет, чтобы что-то найти.» (13:26)
-> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_Analitik_Maniavmatova`)
+> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md`)
 >
 > «Нет, мы, как правило, используем определенный набор таблиц, которые мы уже знаем, и знаем, что внутри, что означает. Очень редко, когда бывает, что мне нужна какая-то новая таблица... Это большая редкость. Это какой-то нестандартный запрос, который, как правило, не связан с основной деятельностью.»
 > Источник: Мария Плеханова, живое интервью 22.07.2026 (`Interview_DataAnalysts_28_26_H2_Plekhanova.md`)
@@ -392,7 +551,7 @@ Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 ent
 **Цитаты / данные (доказательная база):**
 > «Я по своей работе презентации не делаю. Но их делает мой руководитель, например, к Пульсу.» (13:27)
 > «Каждые две недели. Потом их делают для встреч с Нино. ... Но лично я не занимаюсь этим. По каким-то редким случаям делаю презентации.» (13:27–13:28)
-> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_Analitik_Maniavmatova`)
+> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md`)
 >
 > «На саму презентацию мало, потому что у нас есть стандартный шаблон к определенным встречам, которые мы просто заполняем ежемесячно. Просто на подготовку, то есть согласование формулировок, детальный расчет влияния, вот на это много. А на само заполнение на самом деле немного. У нас еще есть Ира Чуб, которая занимается, собственно, сбором инфы в презентацию.»
 > «То есть мы ей приносим просто свои слайдики, она все это собирает, приводит в нужный вид.»
@@ -450,7 +609,7 @@ Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 ent
 **Цитаты / данные (доказательная база):**
 > «У нас есть summary. Маша итоги своих расследований ведет в Confluence. И она здесь публикует. Вот, например, здесь видно, что она обнаружила в реестре инцидентов техническая проблема, такая-то, такая-то, связала это с каким-то интентом.» (13:16–13:17)
 > «...который уже был в отчете Excel, и поняла, что вот этот инцидент, связанный с каким-то интентом, либо интентами, вот настолько понизил нам среднюю оценку за день.» (13:17)
-> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_Analitik_Maniavmatova`)
+> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md`)
 >
 > «На самом деле, написать отчет у меня занимает, не знаю, 5-7 минут, и это с учетом того, что график какой-нибудь нарисовать.»
 > «Вывод это, я описываю, допустим, 20.07 авария, общебанковская кавка... влияние на показатель out минус 0,27%... я не готовлю там прям огромные какие-то расписные истории. Я показываю фактор, показываю влияние.»
@@ -502,7 +661,7 @@ Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 ent
 **Цитаты / данные (доказательная база):**
 > «Я тут недавно подумала о том, что много времени тратится на постановку заведения задач в джиро. ... я практически весь день только тем и занималась, что заводила их в джиро. Заводила в джиро, заводила в джиро, и на то же уходит время.» (13:01–13:02)
 > «Потом мне кажется, что было бы классно... получать какую-то рассылку от и агента по своей личной эффективности... сколько сторипоинтов у меня было в прошлом спринте, сколько в позапрошлом спринте.» (13:02–13:03)
-> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_Analitik_Maniavmatova`)
+> Источник: Алия Миниахматова, живое интервью 14.07.2026 (`Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md`)
 
 *Примечание (23.07.2026): цитата «К сожалению, и агент, который у нас в Outlook вроде как встроен... работает со сбоями» — ранее приписанная Миниахматовой — удалена: голоса в транскрипте этого интервью распознаны некорректно, и такой интеграции в её команде не существует. Соответствующие выводы (пункт про "починить, а не строить с нуля", вопрос про сломанную интеграцию у Плехановой) убраны из этой записи.*
 >
@@ -600,7 +759,7 @@ Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 ent
 5. Организационный риск не проверен: согласится ли заказчик, что его неформальное сообщение в чате станет официальной постановкой задачи без подтверждения.
 
 **Цитаты / данные (доказательная база):**
-> «Я тут недавно подумала о том, что много времени тратится на постановку заведения задач в джиро... я практически весь день только тем и занималась, что заводила их в джиро.» — Алия Миниахматова, живое интервью 14.07.2026 (`Interview_Analitik_Maniavmatova`)
+> «Я тут недавно подумала о том, что много времени тратится на постановку заведения задач в джиро... я практически весь день только тем и занималась, что заводила их в джиро.» — Алия Миниахматова, живое интервью 14.07.2026 (`Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md`)
 > «На собственное ведение задач... тратит, по её оценке, около "часа три" в неделю» — Мария Плеханова, живое интервью 22.07.2026 (`Interview_DataAnalysts_28_26_H2_Plekhanova.md`)
 > «Не факт. Смотри — если ИИ создаст задачу, но неправильно поймёт, что заказчик хотел, я всё равно буду это разгребать, только на другом этапе. Мне не нужно, чтобы задачи появлялись быстрее — мне нужно, чтобы они появлялись правильно.» — синтетическая персона «Ирина Соколова», тимлид (синтетический CustDev, 23.07.2026)
 > Источник: см. выше по каждой цитате
@@ -669,11 +828,6 @@ Note: DL-5 below (Power BI framing, quote-corrected 09.07.2026) and the DL-5 ent
 **Авторство:**
 - Кто принял решение: Григоренко Ольга Игоревна
 - Кто участвовал в обсуждении: Мария Плеханова, синтетическая персона (тимлид)
-
----
-# Skill — Decision Log
-
-> Принцип: «Если решение не записано — его не было».
 
 ---
 
