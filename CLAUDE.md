@@ -200,5 +200,5 @@ Entries follow the format `DL-{N}`. Each full entry must include a citation (quo
 | DL-15 | AI summary after anomaly investigation | Data analysts | 🔴 Stop | Write-up takes 5–7 min; bottleneck is the analysis before it (→ DL-17) |
 | DL-16 | Jira: task creation + status collection | Data analysts | ➗ Split | Split into DL-18 (creation) + DL-19 (statuses) on 23.07 |
 | DL-17 | Incident↔request classification | Data analysts | 🟡 Pivot | Daily pain, huge volume; blocker: no labeled data → test zero/few-shot on historical incidents |
-| DL-18 | Auto-create Jira tasks from customer requests | Data analysts | 🟡 Pivot | 2 respondents confirm; split "creation time" vs "clarification time"; interview rank-and-file analysts |
-| DL-19 | Auto-collect statuses for weekly team report | Data analysts (team lead) | 🟡 Pivot | «Вся пятница» ≈ 8h/wk (n=1) — exact ICP pain; next: 1-sprint draft-report pilot + measure bot-ping response rate |
+| DL-18 | Auto-create Jira tasks from customer requests | Data analysts | 🟡 Pivot | 3 live respondents (incl. real team lead 23.07 — initially mislogged as synthetic); ЦА likely rank-and-file analysts; split "creation" vs "clarification" time |
+| DL-19 | Auto-collect statuses for weekly team report | Data analysts (team lead) | 🟡 Pivot | «Вся пятница» ≈ 8h/wk (n=1); "draft + gaps" scenario confirmed by a 2nd real team lead (23.07, initially mislogged as synthetic); next: 1-sprint draft-report pilot + measure bot-ping response rate |
