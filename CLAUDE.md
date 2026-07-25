@@ -102,7 +102,8 @@ Product builder doing AI transformation inside banks. I find roles with measurab
 - Killed after synthetic CustDev: Intent coverage gap detection (needs conversation logs → PII constraint, hard blocker).
 - ~~Product managers, product designers: no market scan run yet~~ — superseded: dedicated hypothesis packs + market-scan rounds ran 10–21.07.2026 (`Hypotheses_ProductManagers_28_26.md`, `Hypotheses_ProductDesigners_28_26.md`).
 
-**→ Next actions (updated 23.07.2026; full criteria per entry in `decision-log.md`):**
+**→ Next actions (updated 25.07.2026; full criteria per entry in `decision-log.md`):**
+- **Build phase:** dev plans for DL-19/DL-18/DL-17 are ready in `MVP_DevPlans_30_26.md` — start with week-0 tasks: pre-commit 🟢/🟡/🔴 criteria into the DL entries, reuse checks (Jira Automation / Mail Handler / АльфаГен), ИБ pre-consultation via Шубич's precedent, first baseline Friday.
 - **DL-18/DL-19 (Jira automation, analysts):** interviews with rank-and-file analysts with split time questions (creation vs clarification); quantitative Jira checks (delay between request and task creation; status staleness); 1-sprint draft-report pilot for DL-19.
 - **DL-17 (incident classification):** narrow to zero/few-shot classification on historical incidents (no labeled data exists); ask scriptwriters their side of the consultation load.
 - **DL-5 (dashboards):** 2–4 more DL-1-team interviews in "draft, not final" scope + fix the sprint-share question; PoC on historical requirement sets; evaluate Visiology Cortex as build-vs-buy.
@@ -136,6 +137,7 @@ One full cycle is ~3 hours. The loop is closed when the full entry lives in `dec
 |---|---|
 | `CLAUDE.md` | This file — product context, strategy, Decision Log Index |
 | `decision-log.md` | **Canonical Decision Log** — full DL-0…DL-19 entries with evidence |
+| `MVP_DevPlans_30_26.md` | Dev plans for the three build candidates (25.07.2026): Отчёт-бот (DL-19), Задача-бот (DL-18), offline classification PoC (DL-17) |
 | `CLAUDE_template.md` | Product context template — fill in per product, rename to `CLAUDE.md` |
 | `skill-hypothesis-generating.md` | Generates hypothesis candidates from 3 sources (market, CustDev, product data) |
 | `skill-hypothesis-check.md` | Structures a raw idea into a testable hypothesis + ICE (I·C·A, 1–10) + go/pivot/stop criteria |
