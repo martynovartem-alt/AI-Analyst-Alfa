@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Hypotheses_ProductManagers_28_26.md",
+                "file": "HypothesisBacklog.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Hypotheses_ProductManagers_28_26"
+              "title": "HypothesisBacklog"
             }
           },
           {
@@ -261,10 +261,11 @@
   },
   "active": "989841aec99351f0",
   "lastOpenFiles": [
+    "Hypotheses_ProductManagers_28_26.md",
+    "HypothesisBacklog.md",
     "Hypotheses_Scriptwriters_28_26.md",
     "MVP_DevPlans_30_26.md",
     "decision-log.md",
-    "Hypotheses_ProductManagers_28_26.md",
     "Hypotheses_ProductDesigners_28_26.md",
     "Interview_ProductManagers_28_26_H1_PM.md",
     "README.md",
@@ -291,7 +292,6 @@
     "skill-hypothesis-check.md",
     "skill-decision-log.md",
     "checkout_hyphothesis_12.08_managers/hypotheses_pm_12__08_claude.md",
-    "checkout_hyphothesis_12.08_managers/checkout_codex.md",
-    "checkout_hyphothesis_12.08_managers/checkout_claude.md"
+    "checkout_hyphothesis_12.08_managers/checkout_codex.md"
   ]
 }
