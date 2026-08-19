@@ -140,6 +140,7 @@ One full cycle is ~3 hours. The loop is closed when the full entry lives in `dec
 | `CLAUDE.md` | This file — product context, strategy, Decision Log Index |
 | `decision-log.md` | **Canonical Decision Log** — full DL-0…DL-19 entries with evidence |
 | `MVP_DevPlans_30_26.md` | Dev plans for the three build candidates (25.07.2026): Отчёт-бот (DL-19), Задача-бот (DL-18), offline classification PoC (DL-17) |
+| `OST_DataAnalysts_28_26.md` | Opportunity Solution Tree (07.08.2026) for the data-analyst hypothesis family — DL-19/DL-18/DL-17/DL-5 under one business goal, with rejected solution alternatives per branch |
 | `CLAUDE_template.md` | Product context template — fill in per product, rename to `CLAUDE.md` |
 | `skill-hypothesis-generating.md` | Generates hypothesis candidates from 3 sources (market, CustDev, product data) |
 | `skill-hypothesis-check.md` | Structures a raw idea into a testable hypothesis + ICE (I·C·A, 1–10) + go/pivot/stop criteria |
