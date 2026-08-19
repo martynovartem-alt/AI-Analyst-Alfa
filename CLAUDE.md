@@ -143,6 +143,7 @@ One full cycle is ~3 hours. The loop is closed when the full entry lives in `dec
 | `MVP_DevPlans_30_26.md` | Dev plans for the three build candidates (25.07.2026): Отчёт-бот (DL-19), Задача-бот (DL-18), offline classification PoC (DL-17); updated 12.08 with DL-19 working notes |
 | `OST_DataAnalysts_28_26.md` | Opportunity Solution Tree (07.08.2026) for the data-analyst hypothesis family — DL-19/DL-18/DL-17/DL-5 under one business goal, with rejected solution alternatives per branch |
 | `tasks_dl19/` | DL-19 build-task breakdown (12.08, Урбисинов) |
+| `HypothesisBacklog.md` / `HypothesisBacklog_v2.md` | Cross-role ICE scoreboard (13–14.08.2026) — flat non-canonical view over all `Hypotheses_*` files + decision log; canon stays in `decision-log.md` |
 | `CLAUDE_template.md` | Product context template — fill in per product, rename to `CLAUDE.md` |
 | `skill-hypothesis-generating.md` | Generates hypothesis candidates from 3 sources (market, CustDev, product data) |
 | `skill-hypothesis-check.md` | Structures a raw idea into a testable hypothesis + ICE (I·C·A, 1–10) + go/pivot/stop criteria |
@@ -164,6 +165,9 @@ One full cycle is ~3 hours. The loop is closed when the full entry lives in `dec
 | `roles/ProductManagers/Interview_PM_valentin_shmakov.md` | **Live transcript** — Валентин Шмаков, 18.08.2026 (interviewer: Арман Урбисинов) → DL-21…DL-24 |
 | `roles/ProductManagers/Interview_ProductManagers_28_26_H1_PM_final.md` | **Current PM interview guide (v3)** — сквозной кейс, per-hypothesis blocks, purchase-framing removed; use this for the next PM interview |
 | `roles/ProductManagers/Interview_ProductManagers_28_26_H1_PM.md` | Superseded PM guide (v1) — kept for history; executed in adapted form 18.08 |
+| `roles/ProductManagers/Interview_ProductManagers_28_26_H1_PM_v2.md` / `_v2_draft.md` | Superseded intermediate guide versions (v2) — current is v3 (`_final`) |
+| `roles/ProductManagers/market_reserch_pm/` | **Targeted PM market scan (13.08.2026)** — AI agents across 5 PM functions, RU focus, + `file-references.csv` with sources (closes the "uncited PM market data" gap) |
+| `roles/ProductManagers/checkout_hyphothesis_12.08_managers/` | Multi-agent hypothesis checkout for the PM portfolio (12–13.08): independent Claude & Codex passes, cross-reviews, `final_synthesis_pm_12_08.md` verdict |
 | `roles/ProductDesigners/Interview_ProductDesigners_28_26_H1_PD.md` / `_H2_PD.md` | Interview **guides** for designers (round 1 / round 2) — not executed yet |
 | `roles/scriptwriters/Interview_Scriptwriters_28_26_H1_SW.md` / `_H2_SW.md` | Interview **guides** for scriptwriters (H-SW-1…16 / H-SW-17…25) — not executed yet |
 | `archive/` | Superseded early runs (`Hypotheses_23_26.md`, `Hypotheses_23_26_2.md` — ~85% absorbed into `roles/Hypotheses_AllRoles_23_26.md`) |
