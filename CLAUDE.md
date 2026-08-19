@@ -151,7 +151,8 @@ One full cycle is ~3 hours. The loop is closed when the full entry lives in `dec
 | `skill-synthetic-custdev.md` | Turns Claude into a specific ICP persona for a practice interview session |
 | `skill-market-scan.md` | Produces a structured market report: TAM, players, trends, gaps — all with sources |
 | `skill-decision-log.md` | Template for recording what was tested, what was learned, and the next step |
-| `SKILL/` (`analyst`, `scriptwriters`, `PD`, `PM`) | Pre-filled synthetic-CustDev persona prompts per role |
+| `SKILL/` (`analyst`, `scriptwriters`, `PD`, `PM`, `zakazchik`) | Pre-filled synthetic-CustDev persona prompts per role. `PM` re-calibrated 19.08 on live DL-21…24 facts (cost-center commitment questions, no purchase framing); `zakazchik` — first demand-side persona (19.08). ⚠️ `analyst` still has an unfilled placeholder |
+| `roles/ProductManagers/synthetic_custdev_19_08/` | Synthetic-CustDev session transcripts 19.08 (PM «Игорь», заказчик «Марина») testing H-PM-17…21 — first synthetic sessions persisted to the repo |
 | `roles/` | **Per-role workspaces (restructured 19.08.2026)** — hypothesis packs, guides, and transcripts now live under `roles/<Role>/` |
 | `roles/Hypotheses_AllRoles_23_26.md` | June canonical run — data analysts + scenario writers, 20 hypotheses. ⚠️ Statuses frozen at 09.06; current verdicts in `decision-log.md`. H-DA-3/H-DA-9 diverged from the July files — see its header note |
 | `roles/DataAnalysts/Hypotheses_DataAnalysts_28_26.md` | July hypothesis-check pass for analysts (H-DA-11…14 line; updated 23.07 with DL-7/10/13 verdicts) |
