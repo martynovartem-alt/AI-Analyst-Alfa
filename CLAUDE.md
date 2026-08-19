@@ -165,7 +165,8 @@ One full cycle is ~3 hours. The loop is closed when the full entry lives in `dec
 | `roles/DataAnalysts/Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md` | **Live transcript** — Алия Миниахматова, 14.07.2026 |
 | `roles/DataAnalysts/Interview_DataAnalysts_28_26_H2_Plekhanova.md` | **Live transcript** — Мария Плеханова, 22.07.2026 *(naming caveat: "H2" here is a transcript; in PD/SW files "H1/H2" means an unexecuted interview guide)* |
 | `roles/ProductManagers/Hypotheses/Interview_PM_valentin_shmakov.md` | **Live transcript** — Валентин Шмаков, 18.08.2026 (interviewer: Арман Урбисинов) → DL-21…DL-24 |
-| `roles/ProductManagers/Hypotheses/Interview_ProductManagers_28_26_H1_PM_final.md` | **Current PM interview guide (v3)** — сквозной кейс, per-hypothesis blocks, purchase-framing removed; for interview #2 combine with the agenda at the end of the hypotheses registry |
+| `roles/ProductManagers/Hypotheses/Interview_ProductManagers_28_26_H2_PM_round2.md` | **Current PM interview guide (v4, round 2, 19.08)** — covers both planned interviews: role-mapping block feeding `SKILL/PM` persona + H-PM-2/H-PM-19 checks + DL-21…24 quantitative gap-fills + short Шмаков follow-up scenario |
+| `roles/ProductManagers/Hypotheses/Interview_ProductManagers_28_26_H1_PM_final.md` | Superseded PM guide (v3) — replaced by v4 round-2 guide on 19.08 |
 | `roles/ProductManagers/Hypotheses/Interview_ProductManagers_28_26_H1_PM.md` | Superseded PM guide (v1) — kept for history; executed in adapted form 18.08 |
 | `roles/ProductManagers/Hypotheses/Interview_ProductManagers_28_26_H1_PM_v2.md` / `_v2_draft.md` | Superseded intermediate guide versions (v2) — current is v3 (`_final`) |
 | `roles/ProductManagers/market_reserch_pm/` | **Targeted PM market scan (13.08.2026)** — AI agents across 5 PM functions, RU focus, + `file-references.csv` with sources (closes the "uncited PM market data" gap) |
