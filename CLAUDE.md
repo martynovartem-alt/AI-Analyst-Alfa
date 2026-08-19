@@ -31,7 +31,7 @@ Product builder doing AI transformation inside banks. I find roles with measurab
 - **Internal team** — embedded inside one bank, not an external vendor
 - **Funding:** Internal IT budget / cost center — no sales cycle, no external pricing
 - **Access:** <1 year tenure — access to new teams requires trust-building; not all interview slots are easy to get
-- **Team:** Product owner (me, prompt/low-code) + 1–2 developers (dedicated full-time)
+- **Team:** Product owner (me, prompt/low-code) + 1–2 developers (dedicated full-time). Active collaborators since Aug 2026: Арман Урбисинов (PM interviews — Шмаков 18.08; DL-19 planning notes + OST) and Ольга Григоренко (analyst interviews, DL-20, scriptwriter hypothesis revision H-SW-26…52)
 - **AI stack:** Dual — external APIs (OpenAI / Anthropic) for prototyping; self-hosted open-source LLM (LLaMA / Mistral family) for production. Quality gap is real and significant. Always validate the hypothesis on the internal model before committing — structured tasks (RegExp, SQL) degrade less than reasoning-heavy or long-context tasks.
 
 ### How hypotheses are discovered
@@ -74,20 +74,20 @@ Product builder doing AI transformation inside banks. I find roles with measurab
 
 **Validation timeline:** 2–4 weeks per hypothesis — 1–2 synthetic CustDev sessions first, then 3–5 real interviews to confirm or kill.
 
-**Candidate roles — ranked by evidence × access (updated 23.07.2026):**
+**Candidate roles — ranked by evidence × access (updated 19.08.2026):**
 
 | Role | Access | Evidence status (see Decision Log Index for verdicts) | Rank |
 |---|---|---|---|
-| Data analysts (DL-1 team + 2 more teams) | **Have access**, incl. live тимлид contact (Соколова, ЧБ-1) since 23.07 | 3 live interviews done (Вахрушева 09.07, Миниахматова 14.07, Плеханова 22.07) + live talk with тимлид ЧБ-1 (Соколова 23.07) → cycles DL-5…DL-19. Strongest surviving: DL-19, DL-18 (Jira automation), DL-17, DL-11 (incident/anomaly investigation). Most narrative/report hypotheses killed. DL-5 open but weakened (low frequency, 2/2 respondents) | **#1** |
-| Chatbot scenario writers | **Have access** | DL-3/DL-4 stalled at synthetic stage (deadline 14.06 passed, no live interviews yet; guides ready). New product-data track 23.07: 12-case registry → H-SW-17…25. Cursor pilot (May–June, 5 scriptwriters) has no recorded results | **#2** |
+| Data analysts (DL-1 team + 2 more teams) | **Have access**, incl. live тимлид contact (Соколова, ЧБ-1) since 23.07 | 3 live interviews done (Вахрушева 09.07, Миниахматова 14.07, Плеханова 22.07) + live talk with тимлид ЧБ-1 (Соколова 23.07) → cycles DL-5…DL-20. Strongest surviving: DL-19, DL-18 (Jira automation), DL-17 + its untested narrowing DL-20 (clustering). Most narrative/report hypotheses killed. DL-5 open but weakened. OST built 07.08 (`OST_DataAnalysts_28_26.md`) | **#1** |
+| Chatbot scenario writers | **Have access** | DL-3/DL-4 stalled at synthetic stage (deadline 14.06 passed, no live interviews yet; guides ready). Product-data track: 12-case registry → H-SW-17…25 (23.07) + revised H-SW-26…52 (27.07, Григоренко: dedup vs in-flight case initiatives, augment-framing enforced). Cursor pilot (May–June, 5 scriptwriters) has no recorded results | **#2** |
 | Product designers | **Have access (via developer contact Николай Шубич, since 14.07.2026)** | H-PD-3/5 confirmed & in development by the developer; H-PD-4 pain confirmed but already covered by an existing tool (Clade) — not being built. Zero live interviews with a designer themselves; round-2 guide ready | **#3** |
-| Product managers | No live contact secured | Synthetic CustDev + market-scan rounds (10.07, 20.07) only; H1 interview guide ready; blocked on a warm intro | **#4** |
+| Product managers | **Live contact established** — 1st live interview done 18.08 (Валентин Шмаков, interviewer Арман Урбисинов) | 4 live-evidence cycles DL-21…DL-24 (18.08): H-PM-4 → wrong role (PRD written by бизнес-аналитик), H-PM-12 killed for respondent, H-PM-9 partial (BI config, not LLM), H-PM-1 clarified. v3 guide ready (`_H1_PM_final.md`). Open: 2nd PM respondent, which product Шмаков PMs | **#4** |
 
 > **Note:** "Chatbot scriptwriters" and "scenario writers" are the same role — one person writes both JS scripts and NLU training data (intents, utterances, RegExp). DL-3 and DL-4 both target this role.
 
-> **Note (updated 14.07.2026):** Product designer access is resolved — reached through a developer (Николай Шубич) who is already building AI tools for that role. Product manager access is still unresolved despite repeated market-sourced hypothesis-generation rounds — market research alone doesn't substitute for a live contact.
+> **Note (updated 14.07.2026):** Product designer access is resolved — reached through a developer (Николай Шубич) who is already building AI tools for that role. ~~Product manager access is still unresolved~~ — **superseded 18.08.2026:** PM access resolved — Арман Урбисинов conducted the first live PM interview (Валентин Шмаков) → DL-21…DL-24.
 
-*Ranking logic: access is the binding constraint at <1 year tenure. Data analysts and scriptwriters have existing relationships and can be interviewed now. Product designers sit above product managers (14.07.2026) — designer access resolved via a developer contact, while product manager access remains at zero live contact despite equal or greater market-research effort.*
+*Ranking logic: access is the binding constraint at <1 year tenure. Data analysts and scriptwriters have existing relationships and can be interviewed now. **⚠️ The #3-vs-#4 ordering premise is now obsolete (19.08.2026):** designers ranked above PMs because PM access was zero — but PMs now have a live interview while designers still have none. Revisit the order on the next ranking pass: PM evidence is live but mostly disconfirming (DL-22 killed, DL-21/24 point to adjacent roles), while designer evidence is confirmed-but-secondhand.*
 
 > **Note (25.07.2026) — key team-lead contact:** Ирина Соколова is the **тимлид ЧБ-1 — Плеханова's team lead**. Live contact since 23.07.2026 (see DL-18/DL-19 correction notes): she confirmed the «черновик + дозаполнение пробелов» scenario for DL-19 and the ЦА signal for DL-18 ("team leads don't create tasks personally"). This also resolves the role question in `MVP_DevPlans_30_26.md` (MVP-1 §6 «Роль и санкция»): Плеханова is the analyst responsible for the weekly report, not the formal team lead — Соколова is the natural pilot approver and announcement sender for MVP-1/MVP-2, matching the ICP («decision to try a tool is made at team lead level»).
 
@@ -104,14 +104,15 @@ Product builder doing AI transformation inside banks. I find roles with measurab
 - Killed after synthetic CustDev: Intent coverage gap detection (needs conversation logs → PII constraint, hard blocker).
 - ~~Product managers, product designers: no market scan run yet~~ — superseded: dedicated hypothesis packs + market-scan rounds ran 10–21.07.2026 (`Hypotheses_ProductManagers_28_26.md`, `Hypotheses_ProductDesigners_28_26.md`).
 
-**→ Next actions (updated 25.07.2026; full criteria per entry in `decision-log.md`):**
+**→ Next actions (updated 19.08.2026; full criteria per entry in `decision-log.md`):**
 - **Build phase:** dev plans for DL-19/DL-18/DL-17 are ready in `MVP_DevPlans_30_26.md` — start with week-0 tasks: pre-commit 🟢/🟡/🔴 criteria into the DL entries, reuse checks (Jira Automation / Mail Handler / АльфаГен), ИБ pre-consultation via Шубич's precedent, first baseline Friday.
 - **DL-18/DL-19 (Jira automation, analysts):** interviews with rank-and-file analysts with split time questions (creation vs clarification); quantitative Jira checks (delay between request and task creation; status staleness); 1-sprint draft-report pilot for DL-19.
 - **DL-17 (incident classification):** narrow to zero/few-shot classification on historical incidents (no labeled data exists); ask scriptwriters their side of the consultation load.
 - **DL-5 (dashboards):** 2–4 more DL-1-team interviews in "draft, not final" scope + fix the sprint-share question; PoC on historical requirement sets; evaluate Visiology Cortex as build-vs-buy.
 - **DL-3/DL-4 (scriptwriters):** execute the ready interview guides (`Interview_Scriptwriters_28_26_H1_SW.md` / `_H2_SW.md`); record Cursor pilot results if the pilot ran (`Cases_Scriptwriters_28_26.md`).
 - **Designers:** live interview with an actual designer via Шубич (guide: `Interview_ProductDesigners_28_26_H2_PD.md`); clarify tool boundaries with Шубич (H-PD-11/H-PD-14 vs his H-PD-3/5).
-- **Product managers:** still blocked on a warm intro before any live signal (guide ready: `Interview_ProductManagers_28_26_H1_PM.md`).
+- **Product managers (updated 19.08):** first live interview done (Шмаков, 18.08 → DL-21…24). Next: confirm which product Шмаков PMs; find a 2nd PM respondent (snowball ask); in the next interview quantify time on «образ результата»/согласование (DL-21), incoming request volume (DL-22), a concrete delayed-detection case (DL-23) — and the cross-role ИБ-turnaround question, still never asked live of any role. Use the v3 guide (`roles/ProductManagers/Interview_ProductManagers_28_26_H1_PM_final.md`).
+- **DL-20 (clustering, untested):** PoC on historical requests of ЧБ-1 (embeddings + clustering) → show clusters to Плеханова, ask if she recognizes real incidents; pre-commit an acceptable false-merge threshold.
 - **DL-10 residual:** interview a real newcomer (≤2 months in role) — the only open part of the onboarding knowledge-base hypothesis.
 
 **Out of scope:** DevOps/SRE/infrastructure roles; Security/Antifraud — separate department, no access.
@@ -138,9 +139,10 @@ One full cycle is ~3 hours. The loop is closed when the full entry lives in `dec
 | File | Role |
 |---|---|
 | `CLAUDE.md` | This file — product context, strategy, Decision Log Index |
-| `decision-log.md` | **Canonical Decision Log** — full DL-0…DL-19 entries with evidence |
-| `MVP_DevPlans_30_26.md` | Dev plans for the three build candidates (25.07.2026): Отчёт-бот (DL-19), Задача-бот (DL-18), offline classification PoC (DL-17) |
+| `decision-log.md` | **Canonical Decision Log** — full DL-0…DL-24 entries with evidence |
+| `MVP_DevPlans_30_26.md` | Dev plans for the three build candidates (25.07.2026): Отчёт-бот (DL-19), Задача-бот (DL-18), offline classification PoC (DL-17); updated 12.08 with DL-19 working notes |
 | `OST_DataAnalysts_28_26.md` | Opportunity Solution Tree (07.08.2026) for the data-analyst hypothesis family — DL-19/DL-18/DL-17/DL-5 under one business goal, with rejected solution alternatives per branch |
+| `tasks_dl19/` | DL-19 build-task breakdown (12.08, Урбисинов) |
 | `CLAUDE_template.md` | Product context template — fill in per product, rename to `CLAUDE.md` |
 | `skill-hypothesis-generating.md` | Generates hypothesis candidates from 3 sources (market, CustDev, product data) |
 | `skill-hypothesis-check.md` | Structures a raw idea into a testable hypothesis + ICE (I·C·A, 1–10) + go/pivot/stop criteria |
@@ -148,20 +150,23 @@ One full cycle is ~3 hours. The loop is closed when the full entry lives in `dec
 | `skill-market-scan.md` | Produces a structured market report: TAM, players, trends, gaps — all with sources |
 | `skill-decision-log.md` | Template for recording what was tested, what was learned, and the next step |
 | `SKILL/` (`analyst`, `scriptwriters`, `PD`, `PM`) | Pre-filled synthetic-CustDev persona prompts per role |
-| `Hypotheses_AllRoles_23_26.md` | June canonical run — data analysts + scenario writers, 20 hypotheses. ⚠️ Statuses frozen at 09.06; current verdicts in `decision-log.md`. H-DA-3/H-DA-9 diverged from the July files — see its header note |
-| `Hypotheses_DataAnalysts_28_26.md` | July hypothesis-check pass for analysts (H-DA-11…14 line; updated 23.07 with DL-7/10/13 verdicts) |
-| `Hypotheses_Scriptwriters_28_26.md` | July pass for scriptwriters, H-SW-1…16 (market + vision + synthetic CustDev) |
-| `Cases_Scriptwriters_28_26.md` | Raw product-data case registry from the team's product owner (12 cases + effort metrics + Cursor pilot plan), 23.07 |
-| `Hypotheses_Scriptwriters_FromCases_28_26.md` | H-SW-17…25 derived from the case registry (pre-ICE, metrics pending) |
-| `Hypotheses_ProductDesigners_28_26.md` | July pass, H-PD-1…15; includes the Developer Status Report (Шубич, 14.07) |
-| `Hypotheses_ProductManagers_28_26.md` | July pass, H-PM-1…13; synthetic + market only, zero live interviews |
-| `Interview_DataAnalysts_28_26_Transcript1.md` | **Live transcript** — Вахрушева Т.И., 09.07.2026 |
-| `Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md` | **Live transcript** — Алия Миниахматова, 14.07.2026 |
-| `Interview_DataAnalysts_28_26_H2_Plekhanova.md` | **Live transcript** — Мария Плеханова, 22.07.2026 *(naming caveat: "H2" here is a transcript; in PD/PM/SW files "H1/H2" means an unexecuted interview guide)* |
-| `Interview_ProductDesigners_28_26_H1_PD.md` / `_H2_PD.md` | Interview **guides** for designers (round 1 / round 2) — not executed yet |
-| `Interview_ProductManagers_28_26_H1_PM.md` | Interview **guide** for PMs — not executed yet |
-| `Interview_Scriptwriters_28_26_H1_SW.md` / `_H2_SW.md` | Interview **guides** for scriptwriters (H-SW-1…16 / H-SW-17…25) — not executed yet |
-| `archive/` | Superseded early runs (`Hypotheses_23_26.md`, `Hypotheses_23_26_2.md` — ~85% absorbed into `Hypotheses_AllRoles_23_26.md`) |
+| `roles/` | **Per-role workspaces (restructured 19.08.2026)** — hypothesis packs, guides, and transcripts now live under `roles/<Role>/` |
+| `roles/Hypotheses_AllRoles_23_26.md` | June canonical run — data analysts + scenario writers, 20 hypotheses. ⚠️ Statuses frozen at 09.06; current verdicts in `decision-log.md`. H-DA-3/H-DA-9 diverged from the July files — see its header note |
+| `roles/DataAnalysts/Hypotheses_DataAnalysts_28_26.md` | July hypothesis-check pass for analysts (H-DA-11…14 line; updated 23.07 with DL-7/10/13 verdicts) |
+| `roles/scriptwriters/Hypotheses_Scriptwriters_28_26.md` | July pass, H-SW-1…16 (market + vision + synthetic CustDev) + revised H-SW-26…52 addendum (27.07, Григоренко) |
+| `roles/scriptwriters/Cases_Scriptwriters_28_26.md` | Raw product-data case registry from the team's product owner (12 cases + effort metrics + Cursor pilot plan), 23.07 |
+| `roles/scriptwriters/Hypotheses_Scriptwriters_FromCases_28_26.md` | H-SW-17…25 derived from the case registry (pre-ICE, metrics pending) |
+| `roles/ProductDesigners/Hypotheses_ProductDesigners_28_26.md` | July pass, H-PD-1…15; includes the Developer Status Report (Шубич, 14.07) |
+| `roles/ProductManagers/Hypotheses_ProductManagers_28_26.md` | July pass, H-PM-1…13 (synthetic + market). Live verdicts since 18.08 → DL-21…DL-24 |
+| `roles/DataAnalysts/Interview_DataAnalysts_28_26_Transcript1.md` | **Live transcript** — Вахрушева Т.И., 09.07.2026 |
+| `roles/DataAnalysts/Interview_DataAnalysts_28_26_Transcript2_Miniakhmatova.md` | **Live transcript** — Алия Миниахматова, 14.07.2026 |
+| `roles/DataAnalysts/Interview_DataAnalysts_28_26_H2_Plekhanova.md` | **Live transcript** — Мария Плеханова, 22.07.2026 *(naming caveat: "H2" here is a transcript; in PD/SW files "H1/H2" means an unexecuted interview guide)* |
+| `roles/ProductManagers/Interview_PM_valentin_shmakov.md` | **Live transcript** — Валентин Шмаков, 18.08.2026 (interviewer: Арман Урбисинов) → DL-21…DL-24 |
+| `roles/ProductManagers/Interview_ProductManagers_28_26_H1_PM_final.md` | **Current PM interview guide (v3)** — сквозной кейс, per-hypothesis blocks, purchase-framing removed; use this for the next PM interview |
+| `roles/ProductManagers/Interview_ProductManagers_28_26_H1_PM.md` | Superseded PM guide (v1) — kept for history; executed in adapted form 18.08 |
+| `roles/ProductDesigners/Interview_ProductDesigners_28_26_H1_PD.md` / `_H2_PD.md` | Interview **guides** for designers (round 1 / round 2) — not executed yet |
+| `roles/scriptwriters/Interview_Scriptwriters_28_26_H1_SW.md` / `_H2_SW.md` | Interview **guides** for scriptwriters (H-SW-1…16 / H-SW-17…25) — not executed yet |
+| `archive/` | Superseded early runs (`Hypotheses_23_26.md`, `Hypotheses_23_26_2.md` — ~85% absorbed into `roles/Hypotheses_AllRoles_23_26.md`) |
 | `README.md` | Quick orientation for the repo |
 
 ## Using the skill files
@@ -204,4 +209,9 @@ Entries follow the format `DL-{N}`. Each full entry must include a citation (quo
 | DL-16 | Jira: task creation + status collection | Data analysts | ➗ Split | Split into DL-18 (creation) + DL-19 (statuses) on 23.07 |
 | DL-17 | Incident↔request classification | Data analysts | 🟡 Pivot | Daily pain, huge volume; blocker: no labeled data → test zero/few-shot on historical incidents |
 | DL-18 | Auto-create Jira tasks from customer requests | Data analysts | 🟡 Pivot | 3 live respondents (incl. real team lead 23.07 — initially mislogged as synthetic); ЦА likely rank-and-file analysts; split "creation" vs "clarification" time |
-| DL-19 | Auto-collect statuses for weekly team report | Data analysts (team lead) | 🟡 Pivot | «Вся пятница» ≈ 8h/wk (n=1); "draft + gaps" scenario confirmed by a 2nd real team lead (Соколова, тимлид ЧБ-1 — Плеханова's team; 23.07, initially mislogged as synthetic); next: 1-sprint draft-report pilot + measure bot-ping response rate |
+| DL-19 | Auto-collect statuses for weekly team report | Data analysts (team lead) | 🟡 Pivot | «Вся пятница» ≈ 8h/wk (n=1); "draft + gaps" scenario confirmed by a 2nd real team lead (Соколова, тимлид ЧБ-1 — Плеханова's team; 23.07, initially mislogged as synthetic); next: 1-sprint draft-report pilot + measure bot-ping response rate. PO working notes 07.08 (Урбисинов): new validation question — awareness vs time (do analysts know native Jira JQL/due-date notifications?) |
+| DL-20 | Auto-clustering of requests into incidents (narrowing of DL-17) | Data analysts | ⏸ Untested | Formulated 23.07 (Григоренко) to bypass the DL-17 no-labels blocker via unsupervised clustering; no interview/PoC yet. Next: PoC on historical requests → show clusters to Плеханова |
+| DL-21 | AI draft of task requirements (H-PM-4) | Product managers | 🟡 Pivot | 1st live PM interview (Шмаков, 18.08, via Урбисинов): PRD/CJM written by бизнес-аналитик, not PM → readdress to BA role or narrow to PM's «образ результата» step |
+| DL-22 | AI backlog auto-triage (H-PM-12) | Product managers | 🔴 Stop (for respondent) | Backlog work ≈ 2h/wk, sprint-rhythm disciplined, «задачи, как правило, не теряются»; don't close role-wide on n=1; open: incoming request volume |
+| DL-23 | Proactive metric alerts (H-PM-9) | Product managers | 🟡 Pivot | Alerting partially exists (threshold-based BI, not LLM); gap is coverage — next: fact-check % of key metrics covered + ask for a concrete delayed-detection case |
+| DL-24 | Metric-drop diagnosis for PM (H-PM-1) | Product managers | 🟡 Clarified | Live respondent localizes drops himself via dashboards, but root cause = team/analyst work — refines (doesn't reverse) the synthetic «не та роль» verdict; open: which product Шмаков PMs, time spent on localization |
