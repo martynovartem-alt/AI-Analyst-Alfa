@@ -1,4 +1,4 @@
-# Data Analysts
+# Data analysts / Аналитики данных
 
 > Источник: `CLAUDE.md`, раздел «Candidate roles» (updated 19.08.2026). Rank **#1**.
 

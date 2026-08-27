@@ -1,4 +1,4 @@
-# Бизнес-аналитик (Business Analyst)
+# Business analyst / Бизнес-аналитик
 
 > Источник: `CLAUDE.md`, раздел «Candidate roles» (updated 19.08.2026). Rank **—** (не ранжирована, была запаркована).
 

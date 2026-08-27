@@ -1,4 +1,4 @@
-# Product Managers
+# Product managers / Продакт-менеджеры
 
 > Источник: `CLAUDE.md`, раздел «Candidate roles» (updated 19.08.2026). Rank **#4** (⚠️ порядок #3 vs #4 устарел, см. ниже).
 

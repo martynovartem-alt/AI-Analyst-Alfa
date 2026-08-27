@@ -1,4 +1,4 @@
-# Chatbot Scenario Writers
+# Chatbot scenario writers / Сценаристы чат-ботов
 
 > Источник: `CLAUDE.md`, раздел «Candidate roles» (updated 19.08.2026). Rank **#2**.
 

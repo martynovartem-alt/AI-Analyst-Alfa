@@ -1,4 +1,4 @@
-# Product Designers
+# Product designers / Продуктовые дизайнеры
 
 > Источник: `CLAUDE.md`, раздел «Candidate roles» (updated 19.08.2026). Rank **#3** (⚠️ порядок #3 vs #4 устарел, см. ниже).
 
