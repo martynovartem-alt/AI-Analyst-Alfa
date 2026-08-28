@@ -8,7 +8,7 @@
 | Chatbot scenario writers / Сценаристы чат-ботов | **Have access** | DL-3/DL-4 stalled at synthetic stage (deadline 14.06 passed, no live interviews yet; guides ready). Product-data track: 12-case registry → H-SW-17…25 (23.07) + revised H-SW-26…52 (27.07, Григоренко: dedup vs in-flight case initiatives, augment-framing enforced). Cursor pilot (May–June, 5 scriptwriters) has no recorded results | **#2** |
 | Product designers / Продуктовые дизайнеры | **Have access (via developer contact Николай Шубич, since 14.07.2026)** | H-PD-3/5 confirmed & in development by the developer; H-PD-4 pain confirmed but already covered by an existing tool (Clade) — not being built. Zero live interviews with a designer themselves; round-2 guide ready | **#3** |
 | Product managers / Продакт-менеджеры | **Live contact established** — 4 live interviews done: Валентин Шмаков 18.08, Ксения Долгова 23.08, Анастасия Дубкова + Алексей Лаврищенко 26.08 (interviewer Арман Урбисинов) | 11 live-evidence cycles DL-21…DL-31: H-PM-4 → wrong role (PRD written by бизнес-аналитик, confirmed independently **three** times), H-PM-12 killed for respondent (reinforced 26.08), H-PM-9 partial (BI config, not LLM), **H-PM-2 (was top-ranked, ICE 216) weakening on 3 of 4 live respondents** (near-total BI self-service / no clarification-round friction), H-PM-17 strengthened, H-PM-8 narrowed to a status-notification artifact. **26.08: H-PM-1 (VOK diagnosis) reopened** — 2 new respondents personally burn major time on it, internal LLM already tried and failed on this exact task; **H-PM-19 (impact estimation) gets its first live data and jumps to new #1 by ICE (252)** — named the single hardest part of master-plan work by both new respondents; **2 new hypotheses registered** (H-PM-22 self-serve data access reusing shipped DL-1, H-PM-23 service/contact catalog echoing DL-12) | **#4** |
-| *Business analyst / Бизнес-аналитик (spawn из DL-21, 19.08; readdressed 27.08)* | No live contact yet — snowball via Шмаков/Долгова planned | Hypotheses reused from the PM registry (`Hypotheses_BusinessAnalysts_35_26.md`, 27.08.2026 — see note below for why); readdressed set now H-BA-1 (was H-PM-4/H-PM-17) + H-BA-2 (was H-PM-1). First synthetic CustDev run 27.08.2026 (persona «Наталья», `SKILL/business_analyst`) — narrows H-BA-1 to a linear pilot step + source-traceability requirement, weakens H-BA-2 for this persona's process (lead-transfer, not a regular VOK-style metric), gets first BA-side echoes for H-PM-11 (spec verification) and H-PM-23 (contact catalog). Interview guide ready; zero live BA interviews still | — |
+| *Business analyst / Бизнес-аналитик (spawn из DL-21, 19.08; readdressed 27.08)* | No live contact yet — snowball via Шмаков/Долгова planned | Hypotheses reused from the PM registry (`Hypotheses_BusinessAnalysts_35_26.md`, 27.08.2026 — see note below for why); readdressed set now H-BA-1 (was H-PM-4/H-PM-17) + H-BA-2 (was H-PM-1). First synthetic CustDev run 27.08.2026 (persona «Наталья», `SKILL/BusinessAnalysts`) — narrows H-BA-1 to a linear pilot step + source-traceability requirement, weakens H-BA-2 for this persona's process (lead-transfer, not a regular VOK-style metric), gets first BA-side echoes for H-PM-11 (spec verification) and H-PM-23 (contact catalog). Interview guide ready; zero live BA interviews still | — |
 
 > **Note:** "Chatbot scriptwriters" and "scenario writers" are the same role — one person writes both JS scripts and NLU training data (intents, utterances, RegExp). DL-3 and DL-4 both target this role.
 
@@ -16,14 +16,27 @@
 
 *Ranking logic: access is the binding constraint at <1 year tenure. Data analysts and scriptwriters have existing relationships and can be interviewed now. **⚠️ The #3-vs-#4 ordering premise is now obsolete (19.08.2026):** designers ranked above PMs because PM access was zero — but PMs now have a live interview while designers still have none. Revisit the order on the next ranking pass: PM evidence is live but mostly disconfirming (DL-22 killed, DL-21/24 point to adjacent roles), while designer evidence is confirmed-but-secondhand.*
 
-> **Note (27.08.2026) — Business Analyst track reuses the PM hypothesis registry, not a fresh generation:** `Hypotheses_BusinessAnalysts_35_26.md` readdresses the existing PM registry (`Hypotheses_ProductManagers_28_26.md`, H-PM-1…23) instead of generating candidates from scratch. Reason: bank-specific role mapping. Across three independent live PM interviews (Шмаков DL-21, Долгова DL-26, Лаврищенко 26.08) ownership of detailed requirements — PRD, CJM, BPMN — consistently landed on the **бизнес-аналитик**, not the PM. In this bank, the БА role is functionally closer to the *original* candidate-role thesis behind the PM hypotheses (owns requirements, CJM, task framing) than the PM role turned out to be in practice — PM reads more as a coordination/prioritization role (see DL-21/DL-26/DL-28 and the #3-vs-#4 ordering note above). First synthetic CustDev for this track ran 27.08.2026 (`roles/business_analyst/synthetic_custdev_buisnessanalyst/session_natalya_business_analyst_syntetic_custdev.md`); interview guide for the first live BA respondent is ready (`roles/business_analyst/Interview_BusinessAnalysts_35_26_H1_BA.md`).
+> **Note (27.08.2026) — Business Analyst track reuses the PM hypothesis registry, not a fresh generation:** `Hypotheses_BusinessAnalysts_35_26.md` readdresses the existing PM registry (`Hypotheses_ProductManagers_28_26.md`, H-PM-1…23) instead of generating candidates from scratch. Reason: bank-specific role mapping. Across three independent live PM interviews (Шмаков DL-21, Долгова DL-26, Лаврищенко 26.08) ownership of detailed requirements — PRD, CJM, BPMN — consistently landed on the **бизнес-аналитик**, not the PM. In this bank, the БА role is functionally closer to the *original* candidate-role thesis behind the PM hypotheses (owns requirements, CJM, task framing) than the PM role turned out to be in practice — PM reads more as a coordination/prioritization role (see DL-21/DL-26/DL-28 and the #3-vs-#4 ordering note above). First synthetic CustDev for this track ran 27.08.2026 (`roles/BusinessAnalysts/synthetic_custdev_business_analyst/session_natalya_business_analyst_syntetic_custdev.md`); interview guide for the first live BA respondent is ready (`roles/BusinessAnalysts/Interview_BusinessAnalysts_35_26_H1_BA.md`).
 
 ---
 
 ## Per-role files
 
-- [Data_Analysts.md](Data_Analysts.md)
-- [Chatbot_Scenario_Writers.md](Chatbot_Scenario_Writers.md)
-- [Product_Designers.md](Product_Designers.md)
-- [Product_Managers.md](Product_Managers.md)
-- [Business_Analyst.md](Business_Analyst.md)
+- [DataAnalysts.md](DataAnalysts.md)
+- [ScenarioWriters.md](ScenarioWriters.md)
+- [ProductDesigners.md](ProductDesigners.md)
+- [ProductManagers.md](ProductManagers.md)
+- [BusinessAnalysts.md](BusinessAnalysts.md)
+
+## Synthetic personas (SKILL/)
+
+> Единый токен роли (CamelCase) используется во всех именах: `SKILL/<Token>`, `roles/<Token>/`, `roles_description/<Token>.md`. Подробная сводка по каждой персоне — в per-role файле выше.
+
+| Роль | SKILL-файл | Персона | База калибровки | Годится для вердиктов? |
+|---|---|---|---|---|
+| Data analysts | `SKILL/DataAnalysts` | «Катя» | 3 живых июльских интервью (DL-5…DL-20) | Да — единственная first-person персона |
+| Chatbot scenario writers | `SKILL/ScenarioWriters` | «Дима» | Product data: реестр кейсов команды (23.07) | Осторожно — проценты не подтверждены от первого лица |
+| Product designers | `SKILL/ProductDesigners` | «Лена» | Secondhand: Developer Status Report (Шубич) | Нет — только для оттачивания вопросов гайда |
+| Product managers | `SKILL/ProductManagers` | «Игорь» | Живое интервью Шмакова (DL-21…24); ⚠️ не рекалиброван на Долгову/Дубкову/Лаврищенко | Частично — до рекалибровки |
+| Business analyst | `SKILL/BusinessAnalysts` | «Наталья» + «Алексей» | Вакансия Альфа-Банка + кросс-ролевые PM-сигналы / вымышленная | Осторожно — живых БА-интервью ноль |
+| Internal customer | `SKILL/InternalCustomer` | «Марина» | Кросс-ролевой паттерн 3/3 аналитиков + DL-21 | Нет — demand-side разогрев |

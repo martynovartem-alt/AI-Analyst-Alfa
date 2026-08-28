@@ -3,8 +3,8 @@
 **Generated:** 27.08.2026
 **Метод:** Это не генерация с нуля (`skill-hypothesis-generating.md` шаг 0) — это readdressing-проход по уже собранному материалу роли Product Managers: `../ProductManagers/Hypotheses/Hypotheses_ProductManagers_28_26.md` (H-PM-1…23, 4 живых интервью) + ICE-скорборд `../../HypothesisBacklog.md`.
 **Почему этот файл появился:** Решение продукт-команды (27.08.2026) — вместо product-менеджеров дальше работаем с бизнес-аналитиками: роль БА в этом банке по факту ближе к изначальному пониманию продукт-менеджера в проекте (владение требованиями, CJM, постановка задач), чем сама роль PM, которая на практике оказалась координационной (см. DL-21, DL-26, DL-28 — детальные требования и CJM трижды независимо атрибутированы БА, не PM).
-**Статус доказательной базы — важно:** Ни одного живого интервью с самим БА ещё не было. Всё ниже — это то, что PM-респонденты рассказали *о работе БА* (вторичный, кросс-ролевой источник), плюс синтетическая персона `../../SKILL/business_analyst` (**проведена 27.08.2026** — см. `../synthetic_custdev_buisnessanalyst/session_natalya_business_analyst_syntetic_custdev.md`). Это не заменяет живой БА-CustDev, только даёт стартовый, уже частично подтверждённый набор гипотез вместо генерации с чистого листа.
-**Связанные материалы:** `../../roles_description/Business_Analyst.md` (флагует, что таблица кандидатов в CLAUDE.md устарела), `../../CLAUDE.md` (раздел Candidate roles), `../../decision-log.md` (DL-21, DL-26, DL-28, DL-31).
+**Статус доказательной базы — важно:** Ни одного живого интервью с самим БА ещё не было. Всё ниже — это то, что PM-респонденты рассказали *о работе БА* (вторичный, кросс-ролевой источник), плюс синтетическая персона `../../SKILL/BusinessAnalysts` (**проведена 27.08.2026** — см. `../synthetic_custdev_business_analyst/session_natalya_business_analyst_syntetic_custdev.md`). Это не заменяет живой БА-CustDev, только даёт стартовый, уже частично подтверждённый набор гипотез вместо генерации с чистого листа.
+**Связанные материалы:** `../../roles_description/BusinessAnalysts.md` (флагует, что таблица кандидатов в CLAUDE.md устарела), `../../CLAUDE.md` (раздел Candidate roles), `../../decision-log.md` (DL-21, DL-26, DL-28, DL-31).
 
 ## Как читать этот файл
 
@@ -27,16 +27,16 @@
 **Источники:**
 1. **Шмаков, 18.08.2026 (DL-21):** «...то есть, по сути, то, что ставится изначально на бизнес-аналитика. Уже бизнес-аналитик это всё проработав, естественно, он формирует конкретные PRD, конкретные CJM, корректировки по сценариям, по фичам, функциональностям» — [`Interview_PM_valentin_shmakov.md`](../ProductManagers/Hypotheses/Interview_PM_valentin_shmakov.md)
 2. **Долгова, 23.08.2026 (DL-26):** «Ну, смотри, у нас получается, мы сначала пишем бизнес-требования, это делает бизнес-аналитик» / «У меня есть в команде два бизнес-аналитика. Мы собираем бизнес-требования с заказчиком» — [`Interview_PM_dolgova_ksenia_transcript.md`](../ProductManagers/Hypotheses/Interview_PM_dolgova_ksenia_transcript.md)
-3. **Лаврищенко, 26.08.2026** (зафиксировано в калибровке `SKILL/business_analyst`, п.4): артефакт БА на выходе проработки задачи — CJM, дальше эстафету принимает системный аналитик (FSD) — [`Interview_PM_lavrishko_alex.md`](../ProductManagers/Hypotheses/Interview_PM_lavrishko_alex.md)
+3. **Лаврищенко, 26.08.2026** (зафиксировано в калибровке `SKILL/BusinessAnalysts`, п.4): артефакт БА на выходе проработки задачи — CJM, дальше эстафету принимает системный аналитик (FSD) — [`Interview_PM_lavrishko_alex.md`](../ProductManagers/Hypotheses/Interview_PM_lavrishko_alex.md)
 
 **Что уже известно про формат работы:**
 - Шаблонизация возможна только частично, через опросники для заказчиков — не сам документ целиком: «Это можно максимум плюс-минус шаблонизировать требования. То есть подготовить какие-то шаблоны, опросники, которые заказчикам будут справляться, они их заполняют» (Шмаков, DL-21)
 - У Долговой — тот же паттерн с обратной стороны: расплывчатый вход от бизнеса заставляет БА/PM запрашивать уточнения до оценки трудозатрат — «мы можем понимать одно, они могут там понимать совершенно другое» (DL-26)
-- Независимое эхо от лица самой роли (синтетика, не живое интервью) — `SKILL/business_analyst`, п.5: «Быстрого инструмента для отрисовки BPMN/CJM по текстовому описанию у тебя нет — рисуешь вручную в Miro/Draw.io, это заметная часть времени после каждой серии интервью»
+- Независимое эхо от лица самой роли (синтетика, не живое интервью) — `SKILL/BusinessAnalysts`, п.5: «Быстрого инструмента для отрисовки BPMN/CJM по текстовому описанию у тебя нет — рисуешь вручную в Miro/Draw.io, это заметная часть времени после каждой серии интервью»
 
 **Риски (унаследованы из H-PM-4/H-PM-17, усилены синтетикой БА):**
 - Requirements-задачи — слабое место self-hosted LLM: ближайший рыночный прокси (Mallya 2025) даёт лёгким open-source моделям F1 0.47–0.68, качество спеки ~3/5 (см. рыночный раздел H-PM-17 в PM-реестре)
-- Персона БА настороженно относится к инструментам «сделать BPMN за меня»: «а если он неправильно поймёт связь между шагами, я потом дольше буду это перепроверять, чем нарисовать сама» (`SKILL/business_analyst`)
+- Персона БА настороженно относится к инструментам «сделать BPMN за меня»: «а если он неправильно поймёт связь между шагами, я потом дольше буду это перепроверять, чем нарисовать сама» (`SKILL/BusinessAnalysts`)
 - ИБ-гейт при работе с материалами встреч/заказчиков — кросс-ролевой риск из `CLAUDE.md`, ни разу не проверен ни для одной роли живьём
 
 **Что делать дальше:** первое живое интервью с БА (снежный ком через Шмакова/Долгову — у Долговой в команде их двое); вопрос №1 — сколько времени уходит от брифа до готового PRD/CJM; вопрос №2 — пробовали ли уже шаблонизировать/использовать AI. **Синтетика (27.08.2026, «Наталья»):** гипотеза сужается — не «AI пишет требования», а «AI структурирует сырые заметки в черновик BPMN/CJM»; условия доверия — прослеживаемость каждой связки до исходной фразы и запрет додумывать неявные переходы; пилот начинать с линейного шага без развилок, не со сложного. Использовать эти формулировки как отправную точку в живом интервью (гайд: `../Interview_BusinessAnalysts_35_26_H1_BA.md`), не как замену вопросов.
@@ -116,16 +116,16 @@ CLAUDE.md и решение DL-21 формально относят эту ги�
 - ICE-скорборд: [`../../HypothesisBacklog.md`](../../HypothesisBacklog.md)
 - Живые транскрипты: [`Interview_PM_valentin_shmakov.md`](../ProductManagers/Hypotheses/Interview_PM_valentin_shmakov.md), [`Interview_PM_dolgova_ksenia_transcript.md`](../ProductManagers/Hypotheses/Interview_PM_dolgova_ksenia_transcript.md), [`Interview_PM_dubkova_nastya.md`](../ProductManagers/Hypotheses/Interview_PM_dubkova_nastya.md), [`Interview_PM_lavrishko_alex.md`](../ProductManagers/Hypotheses/Interview_PM_lavrishko_alex.md)
 - Decision Log: DL-21, DL-26, DL-28, DL-31 — [`../../decision-log.md`](../../decision-log.md)
-- Синтетическая персона БА: [`../../SKILL/business_analyst`](../../SKILL/business_analyst) — проведена 27.08.2026, транскрипт: [`../synthetic_custdev_buisnessanalyst/session_natalya_business_analyst_syntetic_custdev.md`](../synthetic_custdev_buisnessanalyst/session_natalya_business_analyst_syntetic_custdev.md)
+- Синтетическая персона БА: [`../../SKILL/BusinessAnalysts`](../../SKILL/BusinessAnalysts) — проведена 27.08.2026, транскрипт: [`../synthetic_custdev_business_analyst/session_natalya_business_analyst_syntetic_custdev.md`](../synthetic_custdev_business_analyst/session_natalya_business_analyst_syntetic_custdev.md)
 - Гайд первого живого БА-интервью: [`../Interview_BusinessAnalysts_35_26_H1_BA.md`](../Interview_BusinessAnalysts_35_26_H1_BA.md)
-- Текущий статус роли-кандидата: [`../../roles_description/Business_Analyst.md`](../../roles_description/Business_Analyst.md), `CLAUDE.md` (раздел Candidate roles)
+- Текущий статус роли-кандидата: [`../../roles_description/BusinessAnalysts.md`](../../roles_description/BusinessAnalysts.md), `CLAUDE.md` (раздел Candidate roles)
 - Действующий гайд PM-интервью (структурный образец, не БА-специфичный): [`../ProductManagers/Hypotheses/Interview_ProductManagers_28_26_H2_PM_round2.md`](../ProductManagers/Hypotheses/Interview_ProductManagers_28_26_H2_PM_round2.md)
 
 ## Следующий шаг по флоу
 
-Этот файл закрывает только readdressing существующего PM-материала — не полноценную генерацию (`skill-hypothesis-generating.md`, шаг 0). Отдельным шагом ещё предстоит формализовать вакансийные сигналы, уже собранные в `SKILL/business_analyst` (реальный текст вакансии «БА, процесс передачи лидов партнёрам»: AS-IS/TO-BE с нуля, десятки интервью с противоречащими требованиями, BPMN-описание процесса) — в H-BA-карточки с ICE; это не входит в этот проход.
+Этот файл закрывает только readdressing существующего PM-материала — не полноценную генерацию (`skill-hypothesis-generating.md`, шаг 0). Отдельным шагом ещё предстоит формализовать вакансийные сигналы, уже собранные в `SKILL/BusinessAnalysts` (реальный текст вакансии «БА, процесс передачи лидов партнёрам»: AS-IS/TO-BE с нуля, десятки интервью с противоречащими требованиями, BPMN-описание процесса) — в H-BA-карточки с ICE; это не входит в этот проход.
 
-1. ~~Запустить готовую синтетику (`SKILL/business_analyst`)~~ — **сделано 27.08.2026**, см. `../synthetic_custdev_buisnessanalyst/session_natalya_business_analyst_syntetic_custdev.md`
+1. ~~Запустить готовую синтетику (`SKILL/BusinessAnalysts`)~~ — **сделано 27.08.2026**, см. `../synthetic_custdev_business_analyst/session_natalya_business_analyst_syntetic_custdev.md`
 2. Живое интервью с БА через снежный ком (Шмаков или Долгова — у Долговой в команде их двое); гайд готов — `../Interview_BusinessAnalysts_35_26_H1_BA.md`
 3. Зафиксировать результат как DL-N в `decision-log.md` + строку в Decision Log Index `CLAUDE.md`
-4. Отдельным циклом формализовать вакансийные сигналы из `SKILL/business_analyst` в H-BA-N с ICE
+4. Отдельным циклом формализовать вакансийные сигналы из `SKILL/BusinessAnalysts` в H-BA-N с ICE

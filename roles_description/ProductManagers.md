@@ -21,4 +21,6 @@
 
 **Open question (26.08.2026, from Art):** whether to keep Product Managers as an active candidate at all, given BA now has live mandate/access and inherits the strongest PM-adjacent hypotheses (H-PM-4, H-PM-11) — not yet decided.
 
+**Синтетическая персона:** «Игорь» (`SKILL/ProductManagers`) — PM чат-бота для юрлиц, 34 года, команда ~10 человек. Перекалиброван 19.08.2026 на живых фактах интервью Шмакова (DL-21…DL-24): PRD/CJM пишет бизнес-аналитик, мастер-план в Excel, бэклог налажен, главная боль — обоснование эффектов перед продкомитетом. Использован в сессии `roles/ProductManagers/synthetic_custdev_19_08/session_pm_igor.md`. Встроенный скепсис: отключённый командой бот-нотификатор. ⚠️ Ещё не рекалиброван на интервью 23.08 и 26.08 (Долгова, Дубкова, Лаврищенко → DL-25…DL-31) — при следующем использовании сначала обновить.
+
 See Decision Log Index in `CLAUDE.md` / `decision-log.md` for per-hypothesis verdicts (DL-21…DL-31).
