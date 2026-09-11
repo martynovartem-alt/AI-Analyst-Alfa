@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-Analyst-Alfa — цикл проверки гипотез</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=PT+Serif:wght@400&family=Geist:wght@400;500;600&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --paper: #f5f5f5; --paper-2: #ececec; --ink: #2d3142; --muted: #4f5d75; --soft: #7a8399;
+      --rule: rgba(45,49,66,0.12);
+      --accent: #eb6c36; --accent-tint: rgba(235,108,54,0.08); --link: #2e5aa8;
+      --sans: 'Geist', 'Inter', system-ui, sans-serif;
+      --serif: 'Instrument Serif', 'PT Serif', serif;
+      --mono: 'Geist Mono', 'IBM Plex Mono', ui-monospace, monospace;
+    }
+    body { min-height: 100vh; padding: 3rem 2rem; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .header { margin-bottom: 2rem; }
+    .header-eyebrow { font-family: var(--mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+    h1 { font-family: var(--serif); font-size: clamp(1.75rem, 3vw + 1rem, 2.5rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.5rem; }
+    .subtitle { font-size: 1rem; line-height: 1.55; color: var(--muted); max-width: 62ch; }
+    .diagram-container { background: transparent; border: none; padding: 0; overflow-x: auto; }
+    svg { display: block; width: 100%; min-width: 900px; }
+    .ring { fill: none; stroke: var(--muted); stroke-width: 1.2; }
+    .spoke { fill: none; stroke: var(--soft); stroke-width: 1; stroke-dasharray: 5 4; }
+    .station { fill: var(--paper); stroke: var(--ink); stroke-width: 1; }
+    .station.focal { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 1.2; }
+    .hub { fill: var(--ink); }
+    .node-name { fill: var(--ink); font: 600 12px var(--sans); text-anchor: middle; }
+    .focal-name { fill: var(--accent); }
+    .sublabel { fill: var(--soft); font: 400 8px var(--mono); text-anchor: middle; }
+    .hub-name { fill: var(--paper); font: 600 16px var(--sans); text-anchor: middle; }
+    .hub-sub { fill: var(--paper); opacity: 0.72; font: 400 8px var(--mono); text-anchor: middle; }
+    .arrow-label { fill: var(--soft); font: 400 8px var(--mono); letter-spacing: 0.06em; text-anchor: middle; }
+
+    .cards { display: grid; grid-template-columns: 0.9fr 1.2fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+    @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
+    .card { background: #ffffff; border-radius: 6px; border: 1px solid var(--rule); padding: 1.25rem; }
+    .card-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.875rem; padding-bottom: 0.875rem; border-bottom: 1px solid rgba(45,49,66,0.08); }
+    .card-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .card-dot.ink { background: var(--ink); }
+    .card-dot.muted { background: var(--muted); }
+    .card-dot.coral { background: var(--accent); }
+    .card h3 { font-size: 0.875rem; font-weight: 600; letter-spacing: -0.005em; }
+    .card ul { list-style: none; color: var(--muted); font-size: 0.8125rem; line-height: 1.55; }
+    .card li { margin-bottom: 0.35rem; padding-left: 0.875rem; position: relative; }
+    .card li::before { content: '—'; position: absolute; left: 0; color: rgba(45,49,66,0.25); font-size: 0.75rem; }
+    .card li strong { color: var(--ink); font-weight: 600; }
+    .footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(45,49,66,0.10); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+
+    <div class="header">
+      <p class="header-eyebrow">Hypothesis Discovery · 30.08.2026</p>
+      <h1>AI-Analyst-Alfa — цикл проверки гипотез</h1>
+      <p class="subtitle">Настольная часть цикла ≈ 3 часа; полная валидация с живыми интервью — 2–4 недели. Сплошное кольцо — ход цикла, пунктирные спицы — запись результатов в канонический лог решений; вердикты меняют только живые данные. Ниже — отгруженные продукты и статус пяти ролевых треков.</p>
+    </div>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 1040 680" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="alfa-loop-title alfa-loop-desc">
+        <title id="alfa-loop-title">Цикл проверки гипотез AI-Analyst-Alfa</title>
+        <desc id="alfa-loop-desc">Семь шагов цикла идут по часовой стрелке — генерация кандидатов, структурирование с ICE, синтетический CustDev, целевой market scan, живые интервью с 3–5 респондентами, вердикт DL-N и строка-индекс в CLAUDE.md — и каждый шаг записывает результат в общий канонический лог решений decision-log.md, накопивший записи DL-0…DL-31; живые интервью выделены как единственный шаг, меняющий вердикты.</desc>
+        <defs>
+          <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.9" fill="rgba(45,49,66,0.10)"/></pattern>
+          <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+          <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+          <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+          <marker id="arrow-soft" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7a8399"/></marker>
+        </defs>
+        <rect width="1040" height="680" fill="#f5f5f5"/>
+        <rect width="1040" height="680" fill="url(#dots)" opacity="0.55"/>
+
+        <!-- Solid clockwise ring: seven arcs on the same r=240 station circle. -->
+        <path class="ring" d="M600.000 113.726 A240 240 0 0 1 677.843 159.209" marker-end="url(#arrow)"/>
+        <path class="ring" d="M730.105 224.000 A240 240 0 0 1 759.262 358.804" marker-end="url(#arrow)"/>
+        <path class="ring" d="M744.820 424.000 A240 240 0 0 1 675.009 523.227" marker-end="url(#arrow)"/>
+        <path class="ring" d="M544.000 578.797 A240 240 0 0 1 497.194 578.914" marker-end="url(#arrow)"/>
+        <path class="ring" d="M365.909 524.000 A240 240 0 0 1 295.603 425.123" marker-end="url(#arrow)"/>
+        <path class="ring" d="M280.835 360.000 A240 240 0 0 1 309.318 225.052" marker-end="url(#arrow)"/>
+        <path class="ring" d="M361.255 160.000 A240 240 0 0 1 438.870 114.129" marker-end="url(#arrow)"/>
+
+        <!-- Dashed write-backs: station inner edge to 6px before the hub stroke. -->
+        <path class="spoke" d="M520.000 132.000 L520.000 282.000" marker-end="url(#arrow-soft)"/>
+        <path class="spoke" d="M667.351 224.000 L590.768 284.289" marker-end="url(#arrow-soft)"/>
+        <path class="spoke" d="M672.000 374.069 L625.855 363.726" marker-end="url(#arrow-soft)"/>
+        <path class="spoke" d="M608.593 524.000 L547.640 397.406" marker-end="url(#arrow-soft)"/>
+        <path class="spoke" d="M431.407 524.000 L492.360 397.406" marker-end="url(#arrow-soft)"/>
+        <path class="spoke" d="M368.000 374.069 L414.145 363.726" marker-end="url(#arrow-soft)"/>
+        <path class="spoke" d="M372.649 224.000 L449.232 284.289" marker-end="url(#arrow-soft)"/>
+
+        <!-- Curated spoke labels beside their spokes, 8px+ clear of the stroke. -->
+        <rect x="532" y="200" width="60" height="16" rx="4" fill="#f5f5f5"/>
+        <text x="562" y="212" class="arrow-label">КАНДИДАТЫ</text>
+        <rect x="388" y="452" width="64" height="16" rx="4" fill="#f5f5f5"/>
+        <text x="420" y="464" class="arrow-label">ТРАНСКРИПТЫ</text>
+
+        <!-- Stations, clockwise from top -->
+        <rect class="station" x="440" y="68" width="160" height="64" rx="6"/>
+        <text x="520" y="96" class="node-name">Генерация кандидатов</text>
+        <text x="520" y="116" class="sublabel">skill-hypothesis-generating</text>
+
+        <rect class="station" x="628" y="160" width="160" height="64" rx="6"/>
+        <text x="708" y="188" class="node-name">Гипотеза + ICE</text>
+        <text x="708" y="208" class="sublabel">skill-hypothesis-check · I·C·A</text>
+
+        <rect class="station" x="672" y="360" width="160" height="64" rx="6"/>
+        <text x="752" y="388" class="node-name">Синтетический CustDev</text>
+        <text x="752" y="408" class="sublabel">персоны SKILL/&lt;Role&gt;</text>
+
+        <rect class="station" x="544" y="524" width="160" height="64" rx="6"/>
+        <text x="624" y="552" class="node-name">Market scan</text>
+        <text x="624" y="572" class="sublabel">skill-market-scan · web search</text>
+
+        <rect class="station focal" x="336" y="524" width="160" height="64" rx="6"/>
+        <text x="416" y="552" class="node-name focal-name">Живые интервью</text>
+        <text x="416" y="572" class="sublabel">транскрипты в Live_interview/</text>
+
+        <rect class="station" x="208" y="360" width="160" height="64" rx="6"/>
+        <text x="288" y="388" class="node-name">Вердикт → DL-N</text>
+        <text x="288" y="408" class="sublabel">go / pivot / stop</text>
+
+        <rect class="station" x="252" y="160" width="160" height="64" rx="6"/>
+        <text x="332" y="188" class="node-name">Индекс в CLAUDE.md</text>
+        <text x="332" y="208" class="sublabel">одна строка на цикл</text>
+
+        <!-- The one shared-state hub. -->
+        <rect class="hub" x="420" y="288" width="200" height="104" rx="8"/>
+        <text x="520" y="336" class="hub-name">Decision Log</text>
+        <text x="520" y="360" class="hub-sub">decision-log.md · DL-0…DL-31</text>
+      </svg>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-dot coral"></span>
+          <h3>Отгружено — 2 продукта</h3>
+        </div>
+        <ul>
+          <li><strong>DL-0 · RegExp-генератор</strong> для сценаристов чат-ботов — ~30% времени спринта возвращено</li>
+          <li><strong>DL-1 · Text→SQL мультиагент</strong> для дата-аналитиков — ~20% капасити команды</li>
+          <li>Оба — паттерн «аугментировать, не заменять»</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-dot ink"></span>
+          <h3>Роли-кандидаты (evidence × access)</h3>
+        </div>
+        <ul>
+          <li><strong>#1 Аналитики данных</strong> — 3 живых интервью; build-фаза DL-19/18/17</li>
+          <li><strong>#2 Сценаристы чат-ботов</strong> — синтетика + реестр кейсов; живых интервью нет</li>
+          <li><strong>#3 Продуктовые дизайнеры</strong> — secondhand через разработчика</li>
+          <li><strong>#4 Продакт-менеджеры</strong> — 4 живых интервью, DL-21…31</li>
+          <li><strong>Новый трек: Бизнес-аналитик</strong> — 2 синтетики, первое живое интервью на днях</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-dot muted"></span>
+          <h3>Пульс проекта</h3>
+        </div>
+        <ul>
+          <li>32 цикла записаны в канонический лог (DL-0…DL-31)</li>
+          <li>Лидер по ICE — <strong>H-PM-19</strong> (оценка эффекта, 252)</li>
+          <li>Кросс-паттерн: боль в интерпретации требований, не в исполнении</li>
+          <li>Валидация гипотезы: 2–4 недели, синтетика → 3–5 живых интервью</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>AI-Analyst-Alfa · Hypothesis Discovery Overview</span>
+      <span>30.08.2026</span>
+    </div>
+
+  </main>
+</body>
+</html>
